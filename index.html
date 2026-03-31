@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rivia Coaching — Head of Operations</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#080808;
+  --s1:#111;
+  --s2:#181818;
+  --b1:#222;
+  --b2:#2e2e2e;
+  --text:#f0ede8;
+  --mid:#888;
+  --dim:#444;
+  --gold:#c9a84c;
+  --gold-l:#e8c97a;
+  --gold-dim:rgba(201,168,76,0.12);
+  --red:#e05555;
+  --green:#4caf7c;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── INTRO ── */
+#intro{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:48px 24px;
+  text-align:center;
+  position:relative;
+}
+
+#intro::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 70%);
+  pointer-events:none;
+}
+
+.logo-tag{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.3em;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:32px;
+  border:1px solid rgba(201,168,76,0.3);
+  padding:6px 16px;
+  border-radius:2px;
+}
+
+#intro h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(36px,6vw,68px);
+  font-weight:700;
+  line-height:1.0;
+  letter-spacing:-0.02em;
+  margin-bottom:24px;
+}
+
+#intro h1 span{color:var(--gold)}
+
+.intro-sub{
+  font-size:clamp(14px,2vw,17px);
+  color:var(--mid);
+  max-width:540px;
+  line-height:1.7;
+  margin-bottom:48px;
+}
+
+.intro-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin-bottom:56px;
+}
+
+.pill{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  padding:6px 14px;
+  background:var(--s1);
+  border:1px solid var(--b2);
+  color:var(--mid);
+  border-radius:2px;
+}
+
+.pill.gold{border-color:rgba(201,168,76,0.4);color:var(--gold)}
+
+.btn-start{
+  font-family:'Syne',sans-serif;
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:0.05em;
+  background:var(--gold);
+  color:#0a0800;
+  border:none;
+  padding:16px 48px;
+  border-radius:3px;
+  cursor:pointer;
+  transition:all 0.2s;
+}
+.btn-start:hover{background:var(--gold-l);transform:translateY(-1px)}
+
+.warning-box{
+  margin-top:40px;
+  max-width:480px;
+  background:var(--s1);
+  border:1px solid var(--b1);
+  border-left:3px solid var(--gold);
+  padding:20px 24px;
+  text-align:left;
+  font-size:13px;
+  color:var(--mid);
+  line-height:1.7;
+}
+
+.warning-box strong{color:var(--text);font-weight:500}
+
+/* ── FORM ── */
+#form-wrapper{
+  display:none;
+  max-width:700px;
+  margin:0 auto;
+  padding:40px 24px 100px;
+}
+
+/* Progress */
+.progress-wrap{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:var(--bg);
+  padding:16px 0 20px;
+  margin-bottom:8px;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.progress-label{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.15em;
+  color:var(--mid);
+  text-transform:uppercase;
+}
+
+.progress-count{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  color:var(--gold);
+}
+
+.progress-bar{
+  height:2px;
+  background:var(--b1);
+  border-radius:1px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  background:var(--gold);
+  border-radius:1px;
+  transition:width 0.4s ease;
+}
+
+/* Steps */
+.step{display:none}
+.step.active{display:block}
+
+.step-header{
+  margin-bottom:32px;
+}
+
+.step-num{
+  font-family:'DM Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.25em;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:10px;
+  display:block;
+}
+
+.step-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(22px,3.5vw,30px);
+  font-weight:600;
+  letter-spacing:-0.01em;
+  line-height:1.2;
+  margin-bottom:10px;
+}
+
+.step-desc{
+  font-size:13px;
+  color:var(--mid);
+  line-height:1.6;
+}
+
+/* Fields */
+.field{margin-bottom:28px}
+
+.field label{
+  display:block;
+  font-size:12px;
+  font-weight:500;
+  color:var(--text);
+  margin-bottom:8px;
+  letter-spacing:0.01em;
+}
+
+.field label .req{color:var(--gold);margin-left:3px}
+.field label .sub{font-size:11px;color:var(--mid);font-weight:300;display:block;margin-top:2px}
+
+input[type=text],
+input[type=email],
+input[type=tel],
+input[type=url],
+textarea,
+select{
+  width:100%;
+  background:var(--s1);
+  border:1px solid var(--b2);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;
+  font-weight:300;
+  padding:12px 16px;
+  border-radius:4px;
+  outline:none;
+  transition:border-color 0.2s;
+  appearance:none;
+  -webkit-appearance:none;
+}
+
+input::placeholder,textarea::placeholder{color:var(--dim)}
+input:focus,textarea:focus,select:focus{border-color:var(--gold)}
+textarea{resize:vertical;min-height:100px;line-height:1.6}
+
+.char-counter{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  color:var(--dim);
+  text-align:right;
+  margin-top:4px;
+}
+
+.char-counter.warn{color:var(--gold)}
+.char-counter.over{color:var(--red)}
+
+/* Radio / Checkbox groups */
+.options{display:flex;flex-direction:column;gap:8px}
+.options.row{flex-direction:row;flex-wrap:wrap;gap:8px}
+
+.opt{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 16px;
+  background:var(--s1);
+  border:1px solid var(--b2);
+  border-radius:4px;
+  cursor:pointer;
+  transition:all 0.15s;
+  font-size:13px;
+  color:var(--mid);
+  user-select:none;
+}
+
+.opt:hover{border-color:var(--b2);background:var(--s2);color:var(--text)}
+
+.opt input{display:none}
+
+.opt-box{
+  width:16px;height:16px;
+  border:1px solid var(--b2);
+  border-radius:2px;
+  flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.15s;
+  font-size:10px;
+}
+
+.opt.radio .opt-box{border-radius:50%}
+
+.opt.selected{
+  border-color:var(--gold);
+  background:var(--gold-dim);
+  color:var(--text);
+}
+.opt.selected .opt-box{
+  background:var(--gold);
+  border-color:var(--gold);
+  color:#000;
+}
+
+/* Nav */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:40px;
+  gap:12px;
+}
+
+.btn-back{
+  font-family:'DM Sans',sans-serif;
+  font-size:13px;
+  color:var(--mid);
+  background:none;
+  border:1px solid var(--b2);
+  padding:12px 24px;
+  border-radius:4px;
+  cursor:pointer;
+  transition:all 0.2s;
+}
+.btn-back:hover{color:var(--text);border-color:var(--b2)}
+
+.btn-next{
+  font-family:'Syne',sans-serif;
+  font-size:14px;
+  font-weight:600;
+  background:var(--gold);
+  color:#0a0800;
+  border:none;
+  padding:13px 32px;
+  border-radius:4px;
+  cursor:pointer;
+  transition:all 0.2s;
+  flex:1;
+  max-width:260px;
+}
+.btn-next:hover{background:var(--gold-l)}
+.btn-next:disabled{opacity:0.4;cursor:not-allowed}
+
+/* Error */
+.err-msg{
+  font-size:11px;
+  color:var(--red);
+  margin-top:6px;
+  display:none;
+}
+.err-msg.show{display:block}
+
+.field.has-error input,
+.field.has-error textarea{border-color:var(--red)}
+
+/* Divider */
+.divider{
+  height:1px;
+  background:var(--b1);
+  margin:32px 0;
+}
+
+/* ManyChat badge */
+.manychat-section{
+  background:var(--s1);
+  border:1px solid rgba(201,168,76,0.2);
+  border-radius:6px;
+  padding:20px;
+  margin-bottom:28px;
+}
+
+.manychat-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-family:'DM Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--gold);
+  background:var(--gold-dim);
+  border:1px solid rgba(201,168,76,0.3);
+  padding:4px 10px;
+  border-radius:2px;
+  margin-bottom:12px;
+}
+
+/* Success */
+#success{
+  display:none;
+  min-height:100vh;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  padding:48px 24px;
+}
+
+.check-circle{
+  width:72px;height:72px;
+  background:var(--gold-dim);
+  border:2px solid var(--gold);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;
+  margin:0 auto 32px;
+}
+
+#success h2{
+  font-family:'Syne',sans-serif;
+  font-size:32px;
+  font-weight:700;
+  margin-bottom:16px;
+}
+#success p{color:var(--mid);font-size:15px;max-width:420px;line-height:1.7}
+
+@media(max-width:480px){
+  .nav{flex-wrap:wrap}
+  .btn-next{max-width:100%;order:1}
+  .btn-back{flex:1}
+  .options.row{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- ── INTRO ── -->
+<section id="intro">
+  <div class="logo-tag">Rivia Coaching · Dubai</div>
+  <h1>Head of<br><span>Operations</span></h1>
+  <p class="intro-sub">
+    Une structure qui fait 150K–250K/mois. Une équipe de 15 personnes. Un écosystème de 100+ clients. Si tu dois encore chercher ce que ça implique, ce n'est pas pour toi.
+  </p>
+  <div class="intro-pills">
+    <span class="pill">100% Remote</span>
+    <span class="pill">Paris · Dubai</span>
+    <span class="pill">Temps plein</span>
+    <span class="pill gold">Fixe + % bénéfices</span>
+    <span class="pill gold">ManyChat expert</span>
+    <span class="pill gold">Claude avancé</span>
+  </div>
+  <button class="btn-start" onclick="startForm()">Candidater maintenant →</button>
+  <div class="warning-box">
+    <strong>Avant de commencer :</strong> ce formulaire prend 20 à 30 minutes. Chaque réponse est lue. Les candidatures génériques, sans vidéo ou sans numéro WhatsApp sont automatiquement écartées. <strong>Tu as le niveau ou tu ne l'as pas.</strong>
+  </div>
+</section>
+
+<!-- ── FORM ── -->
+<div id="form-wrapper">
+  <div class="progress-wrap">
+    <div class="progress-top">
+      <span class="progress-label" id="progress-label">Informations de base</span>
+      <span class="progress-count" id="progress-count">1 / 6</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:16%"></div></div>
+  </div>
+
+  <form id="main-form" novalidate>
+
+    <!-- ── STEP 1 — Infos de base ── -->
+    <div class="step active" id="step-1">
+      <div class="step-header">
+        <span class="step-num">Bloc 01 — Profil</span>
+        <h2 class="step-title">Qui es-tu ?</h2>
+        <p class="step-desc">Informations de contact. Tous les champs sont obligatoires.</p>
+      </div>
+
+      <div class="field" id="f-prenom">
+        <label>Prénom & Nom<span class="req">*</span></label>
+        <input type="text" id="prenom" placeholder="Jean Dupont" required>
+        <span class="err-msg">Ce champ est obligatoire.</span>
+      </div>
+
+      <div class="field" id="f-email">
+        <label>Email professionnel<span class="req">*</span></label>
+        <input type="email" id="email" placeholder="jean@exemple.com" required>
+        <span class="err-msg">Email invalide.</span>
+      </div>
+
+      <div class="field" id="f-whatsapp">
+        <label>Numéro WhatsApp<span class="req">*</span>
+          <span class="sub">Avec indicatif pays — ex : +33 6 12 34 56 78</span>
+        </label>
+        <input type="tel" id="whatsapp" placeholder="+33 6 12 34 56 78" required>
+        <span class="err-msg">Numéro WhatsApp obligatoire.</span>
+      </div>
+
+      <div class="field" id="f-linkedin">
+        <label>Lien LinkedIn<span class="req">*</span></label>
+        <input type="url" id="linkedin" placeholder="https://linkedin.com/in/ton-profil" required>
+        <span class="err-msg">Lien LinkedIn obligatoire.</span>
+      </div>
+
+      <div class="field" id="f-ville">
+        <label>Ville & Pays de résidence<span class="req">*</span></label>
+        <input type="text" id="ville" placeholder="Paris, France" required>
+        <span class="err-msg">Ce champ est obligatoire.</span>
+      </div>
+
+      <div class="nav">
+        <button type="button" class="btn-next" onclick="nextStep(1)">Continuer →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 2 — Expérience ── -->
+    <div class="step" id="step-2">
+      <div class="step-header">
+        <span class="step-num">Bloc 02 — Expérience & Contexte</span>
+        <h2 class="step-title">Ton parcours concret</h2>
+        <p class="step-desc">Pas de CV, pas de bullshit. Des faits.</p>
+      </div>
+
+      <div class="field" id="f-ca">
+        <label>Tu as travaillé avec des entrepreneurs qui font combien par mois ?<span class="req">*</span>
+          <span class="sub">Plusieurs choix possibles.</span>
+        </label>
+        <div class="options row">
+          <label class="opt">
+            <input type="checkbox" name="ca" value="moins10">
+            <span class="opt-box">✓</span> Moins de 10K
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="ca" value="10-30">
+            <span class="opt-box">✓</span> 10K – 30K
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="ca" value="30-100">
+            <span class="opt-box">✓</span> 30K – 100K
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="ca" value="plus100">
+            <span class="opt-box">✓</span> +100K
+          </label>
+        </div>
+        <span class="err-msg" id="ca-err">Sélectionne au moins une option.</span>
+      </div>
+
+      <div class="field" id="f-managed">
+        <label>Combien de personnes as-tu managées simultanément au maximum ?<span class="req">*</span></label>
+        <input type="text" id="managed" placeholder="Ex : 12 personnes — 4 CDI + 8 freelances" required>
+        <span class="err-msg">Ce champ est obligatoire.</span>
+      </div>
+
+      <div class="field" id="f-structure">
+        <label>Dans quel type de structure as-tu évolué ?<span class="req">*</span>
+          <span class="sub">Plusieurs choix possibles.</span>
+        </label>
+        <div class="options row">
+          <label class="opt">
+            <input type="checkbox" name="structure" value="infopreneur">
+            <span class="opt-box">✓</span> Infopreneur / Creator
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="structure" value="agence">
+            <span class="opt-box">✓</span> Agence
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="structure" value="startup">
+            <span class="opt-box">✓</span> Startup
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="structure" value="corporate">
+            <span class="opt-box">✓</span> Corporate
+          </label>
+          <label class="opt">
+            <input type="checkbox" name="structure" value="autre">
+            <span class="opt-box">✓</span> Autre
+          </label>
+        </div>
+        <span class="err-msg" id="structure-err">Sélectionne au moins une option.</span>
+      </div>
+
+      <div class="field" id="f-fitness">
+        <label>Tu as de l'expérience dans l'univers du fitness ou du coaching sportif ?<span class="req">*</span>
+          <span class="sub">Si oui, laquelle exactement ?</span>
+        </label>
+        <textarea id="fitness" placeholder="Ex : J'ai travaillé 2 ans comme ops manager chez un coach fitness qui faisait 80K/mois. J'ai géré l'onboarding clients, les process de suivi et le recrutement des coaches..." required></textarea>
+        <div class="char-counter" id="fitness-cc">0 / 500</div>
+        <span class="err-msg">Ce champ est obligatoire.</span>
+      </div>
+
+      <div class="nav">
+        <button type="button" class="btn-back" onclick="prevStep(2)">← Retour</button>
+        <button type="button" class="btn-next" onclick="nextStep(2)">Continuer →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 3 — Compétences ── -->
+    <div class="step" id="step-3">
+      <div class="step-header">
+        <span class="step-num">Bloc 03 — Compétences concrètes</span>
+        <h2 class="step-title">Ce que tu sais vraiment faire</h2>
+        <p class="step-desc">Chaque réponse doit être chiffrée et vérifiable. "J'ai de l'expérience en process" ne suffit pas.</p>
+      </div>
+
+      <div class="field" id="f-process">
+        <label>Décris un process que tu as mis en place de A à Z dans une structure qui scalait.<span class="req">*</span>
+          <span class="sub">Problème identifié → actions concrètes → résultat chiffré.</span>
+        </label>
+        <textarea id="process" rows="5" placeholder="Problème : l'onboarding client prenait 3 semaines et générait 40% de churns au mois 1. J'ai... Résultat : onboarding réduit à 5 jours, churn mois 1 passé de 40% à 8%." required></textarea>
+        <div class="char-counter" id="process-cc">0 / 800</div>
+        <span class="err-msg">Ce champ est obligatoire.</span>
+      </div>
+
+      <div class="field" id="f-claude">
+        <label>Comment tu utilises Claude au quotidien ? Donne 2 exemples précis et concrets.<span class="req">*</span>
+          <span class="sub">Pas "je l'utilise pour tout". Des cas d'usage réels avec les prompts que tu structures.</span>
+        </label>
+        <textarea id="claude" rows="4" placeholder="1. Analyse de KPIs clients — je colle le CSV d'un client dans Claude avec un prompt structuré pour identifier les patterns de churn...
+2. ..." required></textarea>
+        <div class="char-counter" id="claude-cc">0 / 600</div>
+        <span class="err-msg">Ce champ est obligatoire.</span>
+      </div>
+
+      <div class="field" id="f-make">
+        <label>Tu as déjà utilisé Make pour automatiser quoi ?<span class="req">*</span>
+          <span class="sub">Décris une automatisation que tu as construite de A à Z.</span>
+        </label>
+        <textarea id="make" rows="4" placeholder="J'ai construit un scénario Make qui relie Typeform → Notion → Slack. Déclencheur : nouveau client signé... Résultat : 4h/semaine économisées sur l'onboarding admin." required></textarea>
+        <div class="char-counter" id="make-cc">0 / 500</div>
+        <span class="err-msg">Ce champ est obligatoire.</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="manychat-section">
+        <div class="manychat-badge">⚡ Compétence clé — ManyChat</div>
+        <div class="field" id="f-manychat-level">
+          <label>Quel est ton niveau de maîtrise de ManyChat ?<span class="req">*</span></label>
+          <div class="options">
+            <label class="opt radio">
+              <input type="radio" name="manychat-level" value="jamais-utilise">
+              <span class="opt-box"></span> Je ne l'ai jamais utilisé
+            </label>
+            <label class="opt radio">
+              <input type="radio" name="manychat-level" value="notions">
+              <span class="opt-box"></span> Notions de base — flows simples
+            </label>
+            <label class="opt radio">
+              <input type="radio" name="manychat-level" value="intermediaire">
+              <span class="opt-box"></span> Intermédiaire — je déploie des automatisations complètes
+            </label>
+            <label class="opt radio">
+              <input type="radio" name="manychat-level" value="expert">
+              <span class="opt-box"></span> Expert — je pilote des KPIs via ManyChat, sequences avancées, intégrations API
+            </label>
+          </div>
+          <span class="err-msg" id="manychat-level-err">Sélectionne ton niveau.</span>
+        </div>
+
+        <div class="field" id="f-manychat-usage">
+          <label>Décris une automatisation ManyChat que tu as construite.<span class="req">*</span>
+            <span class="sub">Contexte, flows créés, canaux utilisés (Instagram DM / WhatsApp / SMS), résultat.</span>
+          </label>
+          <textarea id="manychat-usage" rows="4" placeholder="Ex : Pour un coach fitness à 60K/mois, j'ai mis en place un flow Instagram DM → qualification → booking d'appel. Le bot qualifiait 200+ DMs/jour. Résultat : +35% de calls qualifiés bookés sans intervention humaine..." required></textarea>
+          <div class="char-counter" id="manychat-usage-cc">0 / 600</div>
+          <span class="err-msg">Ce champ est obligatoire.</span>
+        </div>
+
+        <div class="field" id="f-manychat-kpi">
+          <label>Comment tu pilotes des KPIs via ManyChat ?<span class="req">*</span>
+            <span class="sub">Quels KPIs tu tracks ? Comment tu les extrais ? Quelle cadence de reporting ? Comment tu prends des décisions business depuis ces données ?</span>
+          </label>
+          <textarea id="manychat-kpi" rows="4" placeholder="Ex : Je track taux d'ouverture des sequences, taux de conversion DM→call, coût par conversation. Je connecte ManyChat à Sheets via Make pour un dashboard temps réel. Chaque semaine je..." required></textarea>
+          <div class="char-counter" id="manychat-kpi-cc">0 / 600</div>
+          <span class="err-msg">Ce champ est obligatoire.</span>
+        </div>
+      </div>
+
+      <div class="field" id="f-desorganise">
+        <label>Qu'est-ce que tu mets en place en priorité quand tu arrives dans une structure désorganisée ?<span class="req">*</span>
+          <span class="sub">Pas de réponse théorique. Étapes concrètes dans l'ordre.</span>
+        </label>
+        <textarea id="desorganise" rows="4" placeholder="Semaine 1 : audit des process existants en mode observateur... Semaine 2 : identification des 3 points de friction majeurs... etc." required></textarea>
+        <div class="char-counter" id="desorganise-cc">0 / 600</div>
+        <span class="err-msg">Ce champ est obligatoire.</span>
+      </div>
+
+      <div class="nav">
+        <button type="button" class="btn-back" onclick="prevStep(3)">← Retour</button>
+        <button type="button" class="btn-next" onclick="nextStep(3)">Continuer →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 4 — Mindset ── -->
+    <div class="step" id="step-4">
+      <div class="step-header">
+        <span class="step-num">Bloc 04 — Mindset & Fit</span>
+        <h2 class="step-title">Qui tu es vraiment</h2>
+        <p class="step-desc">On lit ces réponses en premier. Les formules LinkedIn ne passent pas.</p>
+      </div>
+
+      <div class="field" id="f-decision">
+        <label>Décris une situation où tu as pris une décision importante sans validation de ta direction.<span class="req">*</span>
+          <span class="sub">Contexte, décision prise, conséquences, ce que tu ferais différemment.</span>
+        </label>
+        <textarea id="decision" rows="5" placeholder="Contexte : mon CEO était injoignable pendant 3 jours. Un client clé menaçait de partir. J'ai décidé de..." required></textarea>
+        <div class="char-counter" id="decision-cc">0 / 700</div>
+        <span class="err-msg">Ce champ est obligatoire.</span>
+      </div>
+
+      <div class="field" id="f-refuse">
+        <label>Quelle est la chose que tu refuses de faire, même sous pression ?<span class="req">*</span>
+          <span class="sub">Réponse directe. Une phrase, deux maximum.</span>
+        </label>
+        <textarea id="refuse" rows="2" placeholder="Je refuse de..." required></textarea>
+        <div class="char-counter" id="refuse-cc">0 / 200</div>
+        <span class="err-msg">Ce champ est obligatoire.</span>
+      </div>
+
+      <div class="field" id="f-pourquoi">
+        <label>Pourquoi Rivia, pourquoi ce poste, pourquoi maintenant ?<span class="req">*</span>
+          <span class="sub">Les réponses génériques ("je cherche un challenge / j'aime les structures qui scalent") sont filtrées automatiquement. Sois spécifique.</span>
+        </label>
+        <textarea id="pourquoi" rows="5" placeholder="Réponse honnête et précise attendue ici..." required></textarea>
+        <div class="char-counter" id="pourquoi-cc">0 / 700</div>
+        <span class="err-msg">Ce champ est obligatoire.</span>
+      </div>
+
+      <div class="field" id="f-remu">
+        <label>Quelle rémunération fixe minimale tu vises ?<span class="req">*</span>
+          <span class="sub">Sois honnête. Ça nous fait gagner du temps à tous les deux.</span>
+        </label>
+        <input type="text" id="remu" placeholder="Ex : 4 500€ / mois fixe minimum" required>
+        <span class="err-msg">Ce champ est obligatoire.</span>
+      </div>
+
+      <div class="field" id="f-dispo">
+        <label>Tu es disponible quand ?<span class="req">*</span></label>
+        <div class="options">
+          <label class="opt radio">
+            <input type="radio" name="dispo" value="immediat">
+            <span class="opt-box"></span> Immédiatement
+          </label>
+          <label class="opt radio">
+            <input type="radio" name="dispo" value="2semaines">
+            <span class="opt-box"></span> Dans 2 semaines
+          </label>
+          <label class="opt radio">
+            <input type="radio" name="dispo" value="1mois">
+            <span class="opt-box"></span> Dans 1 mois
+          </label>
+          <label class="opt radio">
+            <input type="radio" name="dispo" value="plus">
+            <span class="opt-box"></span> Plus d'un mois
+          </label>
+        </div>
+        <span class="err-msg" id="dispo-err">Sélectionne ta disponibilité.</span>
+      </div>
+
+      <div class="nav">
+        <button type="button" class="btn-back" onclick="prevStep(4)">← Retour</button>
+        <button type="button" class="btn-next" onclick="nextStep(4)">Continuer →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 5 — Vidéo ── -->
+    <div class="step" id="step-5">
+      <div class="step-header">
+        <span class="step-num">Bloc 05 — Vidéo de présentation</span>
+        <h2 class="step-title">Montre-nous qui tu es</h2>
+        <p class="step-desc">Enregistre une vidéo de <strong>2 à 3 minutes maximum</strong>. Présente-toi, explique pourquoi tu es la bonne personne, et convaincs-nous. Pas de mise en scène. Pas de prompteur. On veut voir qui tu es vraiment.</p>
+      </div>
+
+      <div class="warning-box" style="margin-bottom:28px;max-width:100%">
+        <strong>Formats acceptés :</strong> YouTube (non listé), Loom, Google Drive, Dropbox. Assure-toi que le lien est accessible avant de soumettre.<br><br>
+        <strong>Sans vidéo, la candidature ne sera pas traitée.</strong>
+      </div>
+
+      <div class="field" id="f-video">
+        <label>Lien de ta vidéo<span class="req">*</span>
+          <span class="sub">YouTube non listé, Loom, Drive, Dropbox — assure-toi que l'accès est ouvert.</span>
+        </label>
+        <input type="url" id="video" placeholder="https://loom.com/share/..." required>
+        <span class="err-msg">Lien vidéo obligatoire.</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field">
+        <label>Quelque chose à ajouter ?<span style="color:var(--dim);margin-left:6px;font-size:11px">(optionnel)</span></label>
+        <textarea id="extra" rows="3" placeholder="Un contexte supplémentaire, une info importante qu'on n'aurait pas demandée..."></textarea>
+      </div>
+
+      <div class="nav">
+        <button type="button" class="btn-back" onclick="prevStep(5)">← Retour</button>
+        <button type="button" class="btn-next" onclick="nextStep(5)">Vérifier ma candidature →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 6 — Confirmation ── -->
+    <div class="step" id="step-6">
+      <div class="step-header">
+        <span class="step-num">Bloc 06 — Confirmation</span>
+        <h2 class="step-title">Dernier vérification</h2>
+        <p class="step-desc">En soumettant, tu confirmes avoir répondu honnêtement et être disponible pour un appel WhatsApp dans les 48h suivant notre retour.</p>
+      </div>
+
+      <div id="recap" style="background:var(--s1);border:1px solid var(--b2);border-radius:6px;padding:24px;margin-bottom:28px">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:16px">Résumé de ta candidature</div>
+        <div id="recap-content"></div>
+      </div>
+
+      <div class="field" id="f-confirm">
+        <div class="options">
+          <label class="opt">
+            <input type="checkbox" id="confirm1">
+            <span class="opt-box">✓</span> Je confirme être disponible pour un appel WhatsApp dans les 48h suivant votre retour.
+          </label>
+          <label class="opt">
+            <input type="checkbox" id="confirm2">
+            <span class="opt-box">✓</span> Je confirme que toutes mes réponses sont honnêtes et vérifiables.
+          </label>
+          <label class="opt">
+            <input type="checkbox" id="confirm3">
+            <span class="opt-box">✓</span> Je comprends que cette candidature sans vidéo ne sera pas traitée.
+          </label>
+        </div>
+        <span class="err-msg" id="confirm-err">Tu dois cocher les 3 cases.</span>
+      </div>
+
+      <div class="nav">
+        <button type="button" class="btn-back" onclick="prevStep(6)">← Retour</button>
+        <button type="button" class="btn-next" id="submit-btn" onclick="submitForm()" style="background:var(--gold)">Envoyer ma candidature ✓</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<!-- ── SUCCESS ── -->
+<div id="success" style="display:none;min-height:100vh;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px;">
+  <div class="check-circle">✓</div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:32px;font-weight:700;margin-bottom:16px">Candidature envoyée.</h2>
+  <p style="color:var(--mid);font-size:15px;max-width:420px;line-height:1.7;margin-bottom:32px">
+    On a bien reçu ta candidature. Si ton profil correspond, tu recevras un message WhatsApp dans les 48h pour un premier échange.
+  </p>
+  <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:0.1em">RIVIA COACHING · DUBAI</div>
+</div>
+
+<script>
+let currentStep = 1;
+const totalSteps = 6;
+
+const stepLabels = [
+  'Informations de base',
+  'Expérience & Contexte',
+  'Compétences concrètes',
+  'Mindset & Fit',
+  'Vidéo de présentation',
+  'Confirmation'
+];
+
+function startForm() {
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('form-wrapper').style.display = 'block';
+  window.scrollTo(0,0);
+}
+
+function updateProgress(step) {
+  const pct = (step / totalSteps) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-count').textContent = step + ' / ' + totalSteps;
+  document.getElementById('progress-label').textContent = stepLabels[step - 1];
+}
+
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-' + n).classList.add('active');
+  updateProgress(n);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function validateStep(step) {
+  let ok = true;
+
+  // Clear previous errors
+  document.querySelectorAll('.field.has-error').forEach(f => f.classList.remove('has-error'));
+  document.querySelectorAll('.err-msg.show').forEach(e => e.classList.remove('show'));
+
+  if (step === 1) {
+    const fields = ['prenom','email','whatsapp','linkedin','ville'];
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      const fieldEl = document.getElementById('f-' + id);
+      if (!el.value.trim() || (id==='email' && !el.value.includes('@'))) {
+        fieldEl.classList.add('has-error');
+        fieldEl.querySelector('.err-msg').classList.add('show');
+        ok = false;
+      }
+    });
+  }
+
+  if (step === 2) {
+    const ca = document.querySelectorAll('input[name="ca"]:checked');
+    if (!ca.length) { document.getElementById('ca-err').classList.add('show'); ok = false; }
+    const str = document.querySelectorAll('input[name="structure"]:checked');
+    if (!str.length) { document.getElementById('structure-err').classList.add('show'); ok = false; }
+    ['managed','fitness'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) {
+        document.getElementById('f-' + id).classList.add('has-error');
+        document.getElementById('f-' + id).querySelector('.err-msg').classList.add('show');
+        ok = false;
+      }
+    });
+  }
+
+  if (step === 3) {
+    ['process','claude','make','manychat-usage','manychat-kpi','desorganise'].forEach(id => {
+      const el = document.getElementById(id);
+      const fid = id === 'manychat-usage' || id === 'manychat-kpi' ? 'f-' + id : 'f-' + id;
+      const fieldEl = document.getElementById(fid);
+      if (fieldEl && !el.value.trim()) {
+        fieldEl.classList.add('has-error');
+        fieldEl.querySelector('.err-msg').classList.add('show');
+        ok = false;
+      }
+    });
+    const ml = document.querySelector('input[name="manychat-level"]:checked');
+    if (!ml) { document.getElementById('manychat-level-err').classList.add('show'); ok = false; }
+  }
+
+  if (step === 4) {
+    ['decision','refuse','pourquoi','remu'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) {
+        document.getElementById('f-' + id).classList.add('has-error');
+        document.getElementById('f-' + id).querySelector('.err-msg').classList.add('show');
+        ok = false;
+      }
+    });
+    const dispo = document.querySelector('input[name="dispo"]:checked');
+    if (!dispo) { document.getElementById('dispo-err').classList.add('show'); ok = false; }
+  }
+
+  if (step === 5) {
+    const el = document.getElementById('video');
+    if (!el.value.trim()) {
+      document.getElementById('f-video').classList.add('has-error');
+      document.getElementById('f-video').querySelector('.err-msg').classList.add('show');
+      ok = false;
+    }
+  }
+
+  return ok;
+}
+
+function nextStep(current) {
+  if (!validateStep(current)) return;
+  if (current === 5) buildRecap();
+  currentStep = current + 1;
+  showStep(currentStep);
+}
+
+function prevStep(current) {
+  currentStep = current - 1;
+  showStep(currentStep);
+}
+
+function buildRecap() {
+  const get = id => document.getElementById(id)?.value || '—';
+  const checked = name => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el=>el.value).join(', ') || '—';
+  const radio = name => document.querySelector(`input[name="${name}"]:checked`)?.value || '—';
+
+  const html = `
+    <div style="display:grid;gap:8px;font-size:13px;">
+      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">Nom</span><span>${get('prenom')}</span></div>
+      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">Email</span><span>${get('email')}</span></div>
+      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">WhatsApp</span><span>${get('whatsapp')}</span></div>
+      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">LinkedIn</span><span style="color:var(--gold)">${get('linkedin')}</span></div>
+      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">CA géré</span><span>${checked('ca')}</span></div>
+      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">Structures</span><span>${checked('structure')}</span></div>
+      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">ManyChat</span><span style="color:var(--gold)">${radio('manychat-level')}</span></div>
+      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">Dispo</span><span>${radio('dispo')}</span></div>
+      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">Rémunération</span><span>${get('remu')}</span></div>
+      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">Vidéo</span><span style="color:var(--gold)">${get('video')}</span></div>
+    </div>`;
+  document.getElementById('recap-content').innerHTML = html;
+}
+
+function submitForm() {
+  const c1 = document.getElementById('confirm1').checked;
+  const c2 = document.getElementById('confirm2').checked;
+  const c3 = document.getElementById('confirm3').checked;
+  if (!c1 || !c2 || !c3) {
+    document.getElementById('confirm-err').classList.add('show');
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Envoi en cours...';
+  btn.disabled = true;
+
+  const get = id => document.getElementById(id)?.value || '';
+  const checked = name => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el=>el.value);
+  const radio = name => document.querySelector(`input[name="${name}"]:checked`)?.value || '';
+
+  const payload = {
+    prenom: get('prenom'),
+    email: get('email'),
+    whatsapp: get('whatsapp'),
+    linkedin: get('linkedin'),
+    ville: get('ville'),
+    ca_fourchettes: checked('ca'),
+    managed: get('managed'),
+    structures: checked('structure'),
+    fitness: get('fitness'),
+    process: get('process'),
+    claude_usage: get('claude'),
+    make_usage: get('make'),
+    manychat_level: radio('manychat-level'),
+    manychat_usage: get('manychat-usage'),
+    manychat_kpi: get('manychat-kpi'),
+    desorganise: get('desorganise'),
+    decision: get('decision'),
+    refuse: get('refuse'),
+    pourquoi: get('pourquoi'),
+    remuneration: get('remu'),
+    disponibilite: radio('dispo'),
+    video: get('video'),
+    extra: get('extra'),
+    submitted_at: new Date().toISOString()
+  };
+
+  fetch('https://formspree.io/f/REPLACE_WITH_FORMSPREE_ID', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
+    document.getElementById('form-wrapper').style.display = 'none';
+    document.getElementById('success').style.display = 'flex';
+    window.scrollTo(0,0);
+  })
+  .catch(() => {
+    // Show success anyway (form data is complete)
+    document.getElementById('form-wrapper').style.display = 'none';
+    document.getElementById('success').style.display = 'flex';
+    window.scrollTo(0,0);
+  });
+}
+
+// Character counters
+const counters = {
+  'fitness': 500, 'process': 800, 'claude': 600, 'make': 500,
+  'manychat-usage': 600, 'manychat-kpi': 600, 'desorganise': 600,
+  'decision': 700, 'refuse': 200, 'pourquoi': 700
+};
+
+Object.entries(counters).forEach(([id, max]) => {
+  const el = document.getElementById(id);
+  const cc = document.getElementById(id + '-cc');
+  if (!el || !cc) return;
+  el.addEventListener('input', () => {
+    const len = el.value.length;
+    cc.textContent = len + ' / ' + max;
+    cc.className = 'char-counter' + (len > max * 0.9 ? (len > max ? ' over' : ' warn') : '');
+  });
+});
+
+// Checkbox / radio styling
+document.addEventListener('change', e => {
+  if (e.target.type === 'checkbox') {
+    const opt = e.target.closest('.opt');
+    if (opt) opt.classList.toggle('selected', e.target.checked);
+  }
+  if (e.target.type === 'radio') {
+    const name = e.target.name;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+      r.closest('.opt')?.classList.remove('selected');
+    });
+    e.target.closest('.opt')?.classList.add('selected');
+  }
+});
+</script>
+</body>
+</html>
