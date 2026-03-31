@@ -19,17 +19,17 @@
   --text:#F3F4F6;
   --text2:#9CA3AF;
   --text3:#6B7280;
-  --primary:#6C47FF;
-  --primary-h:#5A35E6;
-  --primary-l:#8B6FFF;
-  --primary-10:rgba(108,71,255,0.1);
-  --primary-20:rgba(108,71,255,0.2);
-  --primary-border:rgba(108,71,255,0.4);
+  --primary:#0023DC;
+  --primary-h:#001FC0;
+  --primary-l:#2244FF;
+  --primary-10:rgba(0,35,220,0.1);
+  --primary-20:rgba(0,35,220,0.2);
+  --primary-border:rgba(0,35,220,0.4);
   --success:#00C897;
   --error:#FF5C5C;
   --warning:#FF8C00;
-  --shadow:0 4px 16px rgba(108,71,255,0.12);
-  --shadow-lg:0 8px 32px rgba(108,71,255,0.18);
+  --shadow:0 4px 16px rgba(0,35,220,0.12);
+  --shadow-lg:0 8px 32px rgba(0,35,220,0.18);
   --r:12px;
 }
 
@@ -51,7 +51,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-s
   position:absolute;
   top:-200px;left:50%;transform:translateX(-50%);
   width:800px;height:800px;
-  background:radial-gradient(circle,rgba(108,71,255,0.15) 0%,transparent 65%);
+  background:radial-gradient(circle,rgba(0,35,220,0.15) 0%,transparent 65%);
   pointer-events:none;
 }
 
@@ -282,9 +282,9 @@ textarea{resize:vertical;min-height:100px;line-height:1.6}
   padding:13px 28px;border-radius:100px;
   cursor:pointer;transition:all 200ms;
   flex:1;max-width:240px;
-  box-shadow:0 2px 8px rgba(108,71,255,0.3);
+  box-shadow:0 2px 8px rgba(0,35,220,0.3);
 }
-.btn-next:hover{background:var(--primary-h);transform:translateY(-1px);box-shadow:0 4px 16px rgba(108,71,255,0.4)}
+.btn-next:hover{background:var(--primary-h);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,35,220,0.4)}
 .btn-next:disabled{opacity:0.4;cursor:not-allowed;transform:none}
 
 /* Recap */
@@ -324,14 +324,15 @@ textarea{resize:vertical;min-height:100px;line-height:1.6}
 <!-- INTRO -->
 <section id="intro">
   <div class="rivia-logo">
-    <div class="rivia-logo-mark">
-      <svg viewBox="0 0 24 24"><path d="M13 3L4 14h8l-1 7 9-11h-8l1-7z"/></svg>
-    </div>
+    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="12" fill="#0023DC"/>
+      <path d="M28.7764 13.6001H19.2237C16.122 13.6001 13.6 16.1221 13.6 19.2238V28.7764C13.6 31.8781 16.122 34.4001 19.2237 34.4001H28.7764C31.878 34.4001 34.4 31.8781 34.4 28.7764V19.2238C34.4 16.1221 31.878 13.6001 28.7764 13.6001ZM15.9627 19.2238C15.9627 17.4274 17.4273 15.9628 19.2237 15.9628H22.5996C22.7456 16.4363 22.8209 16.9274 22.8209 17.4274C22.8209 20.1485 20.6086 22.3608 17.8874 22.3608C17.2237 22.3608 16.5689 22.228 15.9672 21.9758V19.2193L15.9627 19.2238ZM22.2103 32.0374H19.2237C17.4273 32.0374 15.9627 30.5728 15.9627 28.7764V25.1173C16.5645 24.8607 17.2193 24.7324 17.883 24.7324C20.6041 24.7324 22.8164 26.9447 22.8164 29.6658C22.8164 30.5065 22.6085 31.3162 22.2103 32.0374ZM23.9978 25.6881C23.4403 24.8341 22.7102 24.1041 21.8563 23.5466C22.7102 22.9891 23.4403 22.259 23.9978 21.4051C24.5553 22.259 25.2854 22.9891 26.1393 23.5466C25.2854 24.1041 24.5553 24.8341 23.9978 25.6881ZM32.0329 28.7764C32.0329 30.5728 30.5683 32.0374 28.7719 32.0374H25.7853C25.3871 31.3162 25.1792 30.5065 25.1792 29.6658C25.1792 26.9447 27.3915 24.7324 30.1126 24.7324C30.7763 24.7324 31.4311 24.8651 32.0329 25.1173V28.7764ZM32.0329 21.9803C31.4311 22.2369 30.7763 22.3652 30.1126 22.3652C27.3915 22.3652 25.1792 20.1529 25.1792 17.4318C25.1792 16.9274 25.2544 16.4363 25.4004 15.9673H28.7764C30.5727 15.9673 32.0373 17.4318 32.0373 19.2282V21.9847L32.0329 21.9803Z" fill="white"/>
+    </svg>
     <span class="rivia-logo-name">Rivia Coaching</span>
   </div>
 
   <div class="badge">
-    <span>Poste ouvert · Dubai</span>
+    <span>Poste ouvert</span>
   </div>
 
   <h1>Head of<br><span>Operations</span></h1>
@@ -342,7 +343,7 @@ textarea{resize:vertical;min-height:100px;line-height:1.6}
 
   <div class="pills">
     <span class="pill">100% Remote</span>
-    <span class="pill">Paris · Dubai</span>
+    <span class="pill">Paris · International</span>
     <span class="pill">Temps plein</span>
     <span class="pill accent">Fixe + % bénéfices</span>
     <span class="pill accent">ManyChat expert</span>
