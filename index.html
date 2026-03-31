@@ -473,9 +473,8 @@ textarea{resize:vertical;min-height:100px;line-height:1.6}
         <p class="err">Numéro WhatsApp obligatoire.</p>
       </div>
       <div class="field" id="f-linkedin">
-        <label>Profil LinkedIn <span class="req">*</span></label>
+        <label>Profil LinkedIn <span style="color:var(--text3);font-size:12px;font-weight:400">(facultatif)</span></label>
         <input type="url" id="linkedin" placeholder="https://linkedin.com/in/ton-profil">
-        <p class="err">Lien LinkedIn obligatoire.</p>
       </div>
       <div class="field" id="f-ville">
         <label>Ville & Pays de résidence <span class="req">*</span></label>
@@ -827,7 +826,7 @@ function validate(step){
     }
   }
 
-  if(step===1){req('prenom');reqEmail('email');req('whatsapp');req('linkedin');req('ville');}
+  if(step===1){req('prenom');reqEmail('email');req('whatsapp');req('ville');}
   if(step===2){reqChecks('ca','ca-err');req('managed');reqChecks('structure','str-err');req('fitness');}
   if(step===3){req('process');req('claude');req('make');reqRadio('mc-level','mc-level-err');req('mc-usage');req('mc-kpi');req('desorg');}
   if(step===4){req('decision');req('refuse');req('pourquoi');req('remu');reqRadio('dispo','dispo-err');}
