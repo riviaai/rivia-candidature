@@ -4,1093 +4,818 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rivia Coaching — Head of Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap');
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bg:#080808;
-  --s1:#111;
-  --s2:#181818;
-  --b1:#222;
-  --b2:#2e2e2e;
-  --text:#f0ede8;
-  --mid:#888;
-  --dim:#444;
-  --gold:#c9a84c;
-  --gold-l:#e8c97a;
-  --gold-dim:rgba(201,168,76,0.12);
-  --red:#e05555;
-  --green:#4caf7c;
+  --bg:#111827;
+  --s1:#1F2937;
+  --s2:#263040;
+  --b1:#374151;
+  --b2:#4B5563;
+  --text:#F3F4F6;
+  --text2:#9CA3AF;
+  --text3:#6B7280;
+  --primary:#6C47FF;
+  --primary-h:#5A35E6;
+  --primary-l:#8B6FFF;
+  --primary-10:rgba(108,71,255,0.1);
+  --primary-20:rgba(108,71,255,0.2);
+  --primary-border:rgba(108,71,255,0.4);
+  --success:#00C897;
+  --error:#FF5C5C;
+  --warning:#FF8C00;
+  --shadow:0 4px 16px rgba(108,71,255,0.12);
+  --shadow-lg:0 8px 32px rgba(108,71,255,0.18);
+  --r:12px;
 }
 
 html{scroll-behavior:smooth}
-
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'DM Sans',sans-serif;
-  font-weight:300;
-  min-height:100vh;
-  overflow-x:hidden;
-}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* ── INTRO ── */
 #intro{
   min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:48px 24px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:64px 24px;
   text-align:center;
   position:relative;
+  overflow:hidden;
 }
 
 #intro::before{
   content:'';
   position:absolute;
-  inset:0;
-  background:radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 70%);
+  top:-200px;left:50%;transform:translateX(-50%);
+  width:800px;height:800px;
+  background:radial-gradient(circle,rgba(108,71,255,0.15) 0%,transparent 65%);
   pointer-events:none;
 }
 
-.logo-tag{
-  font-family:'DM Mono',monospace;
-  font-size:10px;
-  letter-spacing:0.3em;
-  color:var(--gold);
-  text-transform:uppercase;
-  margin-bottom:32px;
-  border:1px solid rgba(201,168,76,0.3);
-  padding:6px 16px;
-  border-radius:2px;
-}
-
-#intro h1{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(36px,6vw,68px);
-  font-weight:700;
-  line-height:1.0;
-  letter-spacing:-0.02em;
-  margin-bottom:24px;
-}
-
-#intro h1 span{color:var(--gold)}
-
-.intro-sub{
-  font-size:clamp(14px,2vw,17px);
-  color:var(--mid);
-  max-width:540px;
-  line-height:1.7;
+.rivia-logo{
+  display:flex;align-items:center;gap:10px;
   margin-bottom:48px;
 }
 
-.intro-pills{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  justify-content:center;
-  margin-bottom:56px;
-}
-
-.pill{
-  font-family:'DM Mono',monospace;
-  font-size:10px;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  padding:6px 14px;
-  background:var(--s1);
-  border:1px solid var(--b2);
-  color:var(--mid);
-  border-radius:2px;
-}
-
-.pill.gold{border-color:rgba(201,168,76,0.4);color:var(--gold)}
-
-.btn-start{
-  font-family:'Syne',sans-serif;
-  font-size:15px;
-  font-weight:600;
-  letter-spacing:0.05em;
-  background:var(--gold);
-  color:#0a0800;
-  border:none;
-  padding:16px 48px;
-  border-radius:3px;
-  cursor:pointer;
-  transition:all 0.2s;
-}
-.btn-start:hover{background:var(--gold-l);transform:translateY(-1px)}
-
-.warning-box{
-  margin-top:40px;
-  max-width:480px;
-  background:var(--s1);
-  border:1px solid var(--b1);
-  border-left:3px solid var(--gold);
-  padding:20px 24px;
-  text-align:left;
-  font-size:13px;
-  color:var(--mid);
-  line-height:1.7;
-}
-
-.warning-box strong{color:var(--text);font-weight:500}
-
-/* ── FORM ── */
-#form-wrapper{
-  display:none;
-  max-width:700px;
-  margin:0 auto;
-  padding:40px 24px 100px;
-}
-
-/* Progress */
-.progress-wrap{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:var(--bg);
-  padding:16px 0 20px;
-  margin-bottom:8px;
-}
-
-.progress-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:10px;
-}
-
-.progress-label{
-  font-family:'DM Mono',monospace;
-  font-size:10px;
-  letter-spacing:0.15em;
-  color:var(--mid);
-  text-transform:uppercase;
-}
-
-.progress-count{
-  font-family:'DM Mono',monospace;
-  font-size:10px;
-  color:var(--gold);
-}
-
-.progress-bar{
-  height:2px;
-  background:var(--b1);
-  border-radius:1px;
-  overflow:hidden;
-}
-
-.progress-fill{
-  height:100%;
-  background:var(--gold);
-  border-radius:1px;
-  transition:width 0.4s ease;
-}
-
-/* Steps */
-.step{display:none}
-.step.active{display:block}
-
-.step-header{
-  margin-bottom:32px;
-}
-
-.step-num{
-  font-family:'DM Mono',monospace;
-  font-size:9px;
-  letter-spacing:0.25em;
-  color:var(--gold);
-  text-transform:uppercase;
-  margin-bottom:10px;
-  display:block;
-}
-
-.step-title{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(22px,3.5vw,30px);
-  font-weight:600;
-  letter-spacing:-0.01em;
-  line-height:1.2;
-  margin-bottom:10px;
-}
-
-.step-desc{
-  font-size:13px;
-  color:var(--mid);
-  line-height:1.6;
-}
-
-/* Fields */
-.field{margin-bottom:28px}
-
-.field label{
-  display:block;
-  font-size:12px;
-  font-weight:500;
-  color:var(--text);
-  margin-bottom:8px;
-  letter-spacing:0.01em;
-}
-
-.field label .req{color:var(--gold);margin-left:3px}
-.field label .sub{font-size:11px;color:var(--mid);font-weight:300;display:block;margin-top:2px}
-
-input[type=text],
-input[type=email],
-input[type=tel],
-input[type=url],
-textarea,
-select{
-  width:100%;
-  background:var(--s1);
-  border:1px solid var(--b2);
-  color:var(--text);
-  font-family:'DM Sans',sans-serif;
-  font-size:14px;
-  font-weight:300;
-  padding:12px 16px;
-  border-radius:4px;
-  outline:none;
-  transition:border-color 0.2s;
-  appearance:none;
-  -webkit-appearance:none;
-}
-
-input::placeholder,textarea::placeholder{color:var(--dim)}
-input:focus,textarea:focus,select:focus{border-color:var(--gold)}
-textarea{resize:vertical;min-height:100px;line-height:1.6}
-
-.char-counter{
-  font-family:'DM Mono',monospace;
-  font-size:10px;
-  color:var(--dim);
-  text-align:right;
-  margin-top:4px;
-}
-
-.char-counter.warn{color:var(--gold)}
-.char-counter.over{color:var(--red)}
-
-/* Radio / Checkbox groups */
-.options{display:flex;flex-direction:column;gap:8px}
-.options.row{flex-direction:row;flex-wrap:wrap;gap:8px}
-
-.opt{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:11px 16px;
-  background:var(--s1);
-  border:1px solid var(--b2);
-  border-radius:4px;
-  cursor:pointer;
-  transition:all 0.15s;
-  font-size:13px;
-  color:var(--mid);
-  user-select:none;
-}
-
-.opt:hover{border-color:var(--b2);background:var(--s2);color:var(--text)}
-
-.opt input{display:none}
-
-.opt-box{
-  width:16px;height:16px;
-  border:1px solid var(--b2);
-  border-radius:2px;
-  flex-shrink:0;
+.rivia-logo-mark{
+  width:36px;height:36px;
+  background:var(--primary);
+  border-radius:10px;
   display:flex;align-items:center;justify-content:center;
-  transition:all 0.15s;
-  font-size:10px;
+  box-shadow:var(--shadow);
 }
 
-.opt.radio .opt-box{border-radius:50%}
+.rivia-logo-mark svg{width:18px;height:18px;fill:white}
 
-.opt.selected{
-  border-color:var(--gold);
-  background:var(--gold-dim);
-  color:var(--text);
-}
-.opt.selected .opt-box{
-  background:var(--gold);
-  border-color:var(--gold);
-  color:#000;
+.rivia-logo-name{
+  font-size:15px;font-weight:600;letter-spacing:-0.02em;color:var(--text);
 }
 
-/* Nav */
-.nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:40px;
-  gap:12px;
-}
-
-.btn-back{
-  font-family:'DM Sans',sans-serif;
-  font-size:13px;
-  color:var(--mid);
-  background:none;
-  border:1px solid var(--b2);
-  padding:12px 24px;
-  border-radius:4px;
-  cursor:pointer;
-  transition:all 0.2s;
-}
-.btn-back:hover{color:var(--text);border-color:var(--b2)}
-
-.btn-next{
-  font-family:'Syne',sans-serif;
-  font-size:14px;
-  font-weight:600;
-  background:var(--gold);
-  color:#0a0800;
-  border:none;
-  padding:13px 32px;
-  border-radius:4px;
-  cursor:pointer;
-  transition:all 0.2s;
-  flex:1;
-  max-width:260px;
-}
-.btn-next:hover{background:var(--gold-l)}
-.btn-next:disabled{opacity:0.4;cursor:not-allowed}
-
-/* Error */
-.err-msg{
-  font-size:11px;
-  color:var(--red);
-  margin-top:6px;
-  display:none;
-}
-.err-msg.show{display:block}
-
-.field.has-error input,
-.field.has-error textarea{border-color:var(--red)}
-
-/* Divider */
-.divider{
-  height:1px;
-  background:var(--b1);
-  margin:32px 0;
-}
-
-/* ManyChat badge */
-.manychat-section{
-  background:var(--s1);
-  border:1px solid rgba(201,168,76,0.2);
-  border-radius:6px;
-  padding:20px;
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--primary-l);
+  background:var(--primary-10);
+  border:1px solid var(--primary-border);
+  padding:6px 14px;border-radius:100px;
   margin-bottom:28px;
 }
 
-.manychat-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  font-family:'DM Mono',monospace;
-  font-size:9px;
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  color:var(--gold);
-  background:var(--gold-dim);
-  border:1px solid rgba(201,168,76,0.3);
-  padding:4px 10px;
-  border-radius:2px;
-  margin-bottom:12px;
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--primary-l);animation:pulse 2s infinite}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+#intro h1{
+  font-size:clamp(42px,7vw,76px);
+  font-weight:700;
+  letter-spacing:-0.04em;
+  line-height:1.0;
+  margin-bottom:20px;
+  color:var(--text);
 }
+
+#intro h1 span{
+  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-l) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+.intro-sub{
+  font-size:16px;color:var(--text2);max-width:500px;line-height:1.7;margin-bottom:48px;font-weight:300;
+}
+
+.pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:48px}
+
+.pill{
+  font-size:12px;font-weight:500;
+  padding:7px 16px;border-radius:100px;
+  background:var(--s1);border:1px solid var(--b1);
+  color:var(--text2);
+}
+
+.pill.accent{background:var(--primary-10);border-color:var(--primary-border);color:var(--primary-l)}
+
+.btn-primary{
+  font-size:15px;font-weight:600;
+  background:var(--primary);
+  color:white;border:none;
+  padding:16px 40px;border-radius:100px;
+  cursor:pointer;transition:all 200ms ease;
+  box-shadow:var(--shadow);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{background:var(--primary-h);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.btn-primary svg{width:16px;height:16px;fill:white;transition:transform 200ms}
+.btn-primary:hover svg{transform:translateX(3px)}
+
+.alert{
+  margin-top:40px;
+  max-width:460px;
+  background:var(--s1);
+  border:1px solid var(--b1);
+  border-left:3px solid var(--primary);
+  padding:20px 24px;text-align:left;
+  border-radius:0 var(--r) var(--r) 0;
+  font-size:13px;color:var(--text2);line-height:1.7;
+}
+.alert strong{color:var(--text);font-weight:500}
+
+/* ── FORM WRAPPER ── */
+#form-wrapper{display:none;max-width:680px;margin:0 auto;padding:32px 24px 100px}
+
+/* Progress */
+.progress-wrap{
+  position:sticky;top:0;z-index:50;
+  background:var(--bg);
+  padding:20px 0 16px;
+  margin-bottom:4px;
+  border-bottom:1px solid var(--b1);
+}
+
+.progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.progress-name{font-size:12px;font-weight:500;color:var(--text2)}
+.progress-frac{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--primary-l)}
+
+.progress-track{height:3px;background:var(--s1);border-radius:2px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-l));border-radius:2px;transition:width 0.4s cubic-bezier(0.4,0,0.2,1)}
+
+/* Steps */
+.step{display:none;animation:fadeUp 0.3s ease}
+.step.active{display:block}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+.step-eyebrow{
+  font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--primary-l);margin-bottom:8px;
+  font-family:'JetBrains Mono',monospace;
+}
+
+.step-title{
+  font-size:clamp(24px,4vw,32px);font-weight:700;letter-spacing:-0.02em;
+  margin-bottom:8px;line-height:1.2;
+}
+
+.step-desc{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:36px}
+
+/* Fields */
+.field{margin-bottom:24px}
+
+.field label{
+  display:block;font-size:13px;font-weight:500;color:var(--text);
+  margin-bottom:6px;
+}
+.field label .req{color:var(--primary-l);margin-left:2px}
+.field label .hint{
+  display:block;font-size:11px;font-weight:300;color:var(--text3);margin-top:3px;line-height:1.5;
+}
+
+input[type=text],input[type=email],input[type=tel],input[type=url],textarea,select{
+  width:100%;
+  background:var(--s1);
+  border:1px solid var(--b1);
+  color:var(--text);
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:400;
+  padding:12px 16px;border-radius:10px;
+  outline:none;transition:border-color 200ms,box-shadow 200ms;
+  appearance:none;-webkit-appearance:none;
+}
+input::placeholder,textarea::placeholder{color:var(--text3)}
+input:focus,textarea:focus,select:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px var(--primary-10);
+}
+textarea{resize:vertical;min-height:100px;line-height:1.6}
+
+.counter{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;color:var(--text3);text-align:right;margin-top:4px;
+}
+.counter.warn{color:var(--warning)}
+.counter.over{color:var(--error)}
+
+/* Options */
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.wrap{flex-direction:row;flex-wrap:wrap}
+
+.opt{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 16px;
+  background:var(--s1);border:1px solid var(--b1);border-radius:10px;
+  cursor:pointer;transition:all 200ms;
+  font-size:13px;color:var(--text2);
+  user-select:none;
+}
+.opt:hover{border-color:var(--b2);background:var(--s2);color:var(--text)}
+.opt input{display:none}
+.opt-dot{
+  width:18px;height:18px;flex-shrink:0;
+  border:1.5px solid var(--b2);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;transition:all 200ms;
+}
+.opt.radio .opt-dot{border-radius:50%}
+
+.opt.on{border-color:var(--primary-border);background:var(--primary-10);color:var(--text)}
+.opt.on .opt-dot{background:var(--primary);border-color:var(--primary);color:white}
+
+/* Error */
+.err{font-size:11px;color:var(--error);margin-top:5px;display:none}
+.err.show{display:block}
+.field.bad input,.field.bad textarea{border-color:var(--error) !important;box-shadow:none !important}
+
+/* Divider */
+.hr{height:1px;background:var(--b1);margin:28px 0}
+
+/* Highlight section */
+.highlight{
+  background:var(--s1);
+  border:1px solid var(--primary-border);
+  border-radius:var(--r);
+  padding:20px;
+  margin-bottom:24px;
+}
+.highlight-label{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--primary-l);margin-bottom:16px;
+  font-family:'JetBrains Mono',monospace;
+}
+.highlight-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--primary-l)}
+
+/* Nav */
+.nav{display:flex;gap:12px;margin-top:40px;align-items:center}
+
+.btn-back{
+  font-size:13px;font-weight:500;color:var(--text2);
+  background:var(--s1);border:1px solid var(--b1);
+  padding:12px 24px;border-radius:100px;cursor:pointer;
+  transition:all 200ms;
+}
+.btn-back:hover{background:var(--s2);color:var(--text);border-color:var(--b2)}
+
+.btn-next{
+  font-size:14px;font-weight:600;
+  background:var(--primary);color:white;border:none;
+  padding:13px 28px;border-radius:100px;
+  cursor:pointer;transition:all 200ms;
+  flex:1;max-width:240px;
+  box-shadow:0 2px 8px rgba(108,71,255,0.3);
+}
+.btn-next:hover{background:var(--primary-h);transform:translateY(-1px);box-shadow:0 4px 16px rgba(108,71,255,0.4)}
+.btn-next:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+
+/* Recap */
+.recap{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:24px;margin-bottom:24px}
+.recap-title{font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:var(--primary-l);margin-bottom:16px}
+.recap-row{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--b1);font-size:13px}
+.recap-row:last-child{border-bottom:none}
+.recap-k{color:var(--text2);min-width:140px;flex-shrink:0}
+.recap-v{color:var(--text);word-break:break-all}
 
 /* Success */
 #success{
-  display:none;
-  min-height:100vh;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  text-align:center;
-  padding:48px 24px;
+  display:none;min-height:100vh;
+  flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:64px 24px;
 }
-
-.check-circle{
-  width:72px;height:72px;
-  background:var(--gold-dim);
-  border:2px solid var(--gold);
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:28px;
-  margin:0 auto 32px;
+.check{
+  width:80px;height:80px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-l));
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:32px;margin:0 auto 32px;
+  box-shadow:var(--shadow-lg);
 }
-
-#success h2{
-  font-family:'Syne',sans-serif;
-  font-size:32px;
-  font-weight:700;
-  margin-bottom:16px;
-}
-#success p{color:var(--mid);font-size:15px;max-width:420px;line-height:1.7}
+#success h2{font-size:32px;font-weight:700;letter-spacing:-0.02em;margin-bottom:16px}
+#success p{font-size:15px;color:var(--text2);max-width:400px;line-height:1.7}
 
 @media(max-width:480px){
+  .opts.wrap{flex-direction:column}
   .nav{flex-wrap:wrap}
-  .btn-next{max-width:100%;order:1}
+  .btn-next{max-width:100%}
   .btn-back{flex:1}
-  .options.row{flex-direction:column}
 }
 </style>
 </head>
 <body>
 
-<!-- ── INTRO ── -->
+<!-- INTRO -->
 <section id="intro">
-  <div class="logo-tag">Rivia Coaching · Dubai</div>
+  <div class="rivia-logo">
+    <div class="rivia-logo-mark">
+      <svg viewBox="0 0 24 24"><path d="M13 3L4 14h8l-1 7 9-11h-8l1-7z"/></svg>
+    </div>
+    <span class="rivia-logo-name">Rivia Coaching</span>
+  </div>
+
+  <div class="badge">
+    <span>Poste ouvert · Dubai</span>
+  </div>
+
   <h1>Head of<br><span>Operations</span></h1>
+
   <p class="intro-sub">
-    Une structure qui fait 150K–250K/mois. Une équipe de 15 personnes. Un écosystème de 100+ clients. Si tu dois encore chercher ce que ça implique, ce n'est pas pour toi.
+    150K–250K/mois. 15 personnes managées. 100+ clients. Une structure qui scale vite et qui n'attend pas.
   </p>
-  <div class="intro-pills">
+
+  <div class="pills">
     <span class="pill">100% Remote</span>
     <span class="pill">Paris · Dubai</span>
     <span class="pill">Temps plein</span>
-    <span class="pill gold">Fixe + % bénéfices</span>
-    <span class="pill gold">ManyChat expert</span>
-    <span class="pill gold">Claude avancé</span>
+    <span class="pill accent">Fixe + % bénéfices</span>
+    <span class="pill accent">ManyChat expert</span>
+    <span class="pill accent">Claude avancé</span>
   </div>
-  <button class="btn-start" onclick="startForm()">Candidater maintenant →</button>
-  <div class="warning-box">
-    <strong>Avant de commencer :</strong> ce formulaire prend 20 à 30 minutes. Chaque réponse est lue. Les candidatures génériques, sans vidéo ou sans numéro WhatsApp sont automatiquement écartées. <strong>Tu as le niveau ou tu ne l'as pas.</strong>
+
+  <button class="btn-primary" onclick="startForm()">
+    Candidater maintenant
+    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" fill="none"/></svg>
+  </button>
+
+  <div class="alert" style="margin-top:40px">
+    <strong>Avant de commencer :</strong> ce formulaire prend 20–30 minutes. Chaque réponse est lue. Les candidatures sans vidéo ou sans WhatsApp sont automatiquement écartées.
   </div>
 </section>
 
-<!-- ── FORM ── -->
+<!-- FORM -->
 <div id="form-wrapper">
   <div class="progress-wrap">
-    <div class="progress-top">
-      <span class="progress-label" id="progress-label">Informations de base</span>
-      <span class="progress-count" id="progress-count">1 / 6</span>
+    <div class="progress-meta">
+      <span class="progress-name" id="prog-name">Informations de base</span>
+      <span class="progress-frac" id="prog-frac">1 / 6</span>
     </div>
-    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:16%"></div></div>
+    <div class="progress-track"><div class="progress-bar" id="prog-bar" style="width:16%"></div></div>
   </div>
 
-  <form id="main-form" novalidate>
+  <form id="form" novalidate>
 
-    <!-- ── STEP 1 — Infos de base ── -->
-    <div class="step active" id="step-1">
-      <div class="step-header">
-        <span class="step-num">Bloc 01 — Profil</span>
-        <h2 class="step-title">Qui es-tu ?</h2>
-        <p class="step-desc">Informations de contact. Tous les champs sont obligatoires.</p>
-      </div>
+    <!-- STEP 1 -->
+    <div class="step active" id="s1">
+      <p class="step-eyebrow">01 — Profil</p>
+      <h2 class="step-title">Qui es-tu ?</h2>
+      <p class="step-desc">Informations de contact. Tous les champs sont requis.</p>
 
       <div class="field" id="f-prenom">
-        <label>Prénom & Nom<span class="req">*</span></label>
-        <input type="text" id="prenom" placeholder="Jean Dupont" required>
-        <span class="err-msg">Ce champ est obligatoire.</span>
+        <label>Prénom & Nom <span class="req">*</span></label>
+        <input type="text" id="prenom" placeholder="Jean Dupont">
+        <p class="err">Ce champ est obligatoire.</p>
       </div>
-
       <div class="field" id="f-email">
-        <label>Email professionnel<span class="req">*</span></label>
-        <input type="email" id="email" placeholder="jean@exemple.com" required>
-        <span class="err-msg">Email invalide.</span>
+        <label>Email <span class="req">*</span></label>
+        <input type="email" id="email" placeholder="jean@exemple.com">
+        <p class="err">Adresse email invalide.</p>
       </div>
-
       <div class="field" id="f-whatsapp">
-        <label>Numéro WhatsApp<span class="req">*</span>
-          <span class="sub">Avec indicatif pays — ex : +33 6 12 34 56 78</span>
+        <label>Numéro WhatsApp <span class="req">*</span>
+          <span class="hint">Avec indicatif pays — ex : +33 6 12 34 56 78</span>
         </label>
-        <input type="tel" id="whatsapp" placeholder="+33 6 12 34 56 78" required>
-        <span class="err-msg">Numéro WhatsApp obligatoire.</span>
+        <input type="tel" id="whatsapp" placeholder="+33 6 12 34 56 78">
+        <p class="err">Numéro WhatsApp obligatoire.</p>
       </div>
-
       <div class="field" id="f-linkedin">
-        <label>Lien LinkedIn<span class="req">*</span></label>
-        <input type="url" id="linkedin" placeholder="https://linkedin.com/in/ton-profil" required>
-        <span class="err-msg">Lien LinkedIn obligatoire.</span>
+        <label>Profil LinkedIn <span class="req">*</span></label>
+        <input type="url" id="linkedin" placeholder="https://linkedin.com/in/ton-profil">
+        <p class="err">Lien LinkedIn obligatoire.</p>
       </div>
-
       <div class="field" id="f-ville">
-        <label>Ville & Pays de résidence<span class="req">*</span></label>
-        <input type="text" id="ville" placeholder="Paris, France" required>
-        <span class="err-msg">Ce champ est obligatoire.</span>
+        <label>Ville & Pays de résidence <span class="req">*</span></label>
+        <input type="text" id="ville" placeholder="Paris, France">
+        <p class="err">Ce champ est obligatoire.</p>
       </div>
 
       <div class="nav">
-        <button type="button" class="btn-next" onclick="nextStep(1)">Continuer →</button>
+        <button type="button" class="btn-next" onclick="next(1)">Continuer →</button>
       </div>
     </div>
 
-    <!-- ── STEP 2 — Expérience ── -->
-    <div class="step" id="step-2">
-      <div class="step-header">
-        <span class="step-num">Bloc 02 — Expérience & Contexte</span>
-        <h2 class="step-title">Ton parcours concret</h2>
-        <p class="step-desc">Pas de CV, pas de bullshit. Des faits.</p>
-      </div>
+    <!-- STEP 2 -->
+    <div class="step" id="s2">
+      <p class="step-eyebrow">02 — Expérience</p>
+      <h2 class="step-title">Ton parcours concret</h2>
+      <p class="step-desc">Pas de CV, pas de bullshit. Des faits chiffrés.</p>
 
       <div class="field" id="f-ca">
-        <label>Tu as travaillé avec des entrepreneurs qui font combien par mois ?<span class="req">*</span>
-          <span class="sub">Plusieurs choix possibles.</span>
+        <label>CA des entrepreneurs avec qui tu as travaillé <span class="req">*</span>
+          <span class="hint">Plusieurs réponses possibles.</span>
         </label>
-        <div class="options row">
-          <label class="opt">
-            <input type="checkbox" name="ca" value="moins10">
-            <span class="opt-box">✓</span> Moins de 10K
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="ca" value="10-30">
-            <span class="opt-box">✓</span> 10K – 30K
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="ca" value="30-100">
-            <span class="opt-box">✓</span> 30K – 100K
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="ca" value="plus100">
-            <span class="opt-box">✓</span> +100K
-          </label>
+        <div class="opts wrap">
+          <label class="opt"><input type="checkbox" name="ca" value="moins10"><span class="opt-dot">✓</span>Moins de 10K/mois</label>
+          <label class="opt"><input type="checkbox" name="ca" value="10-30"><span class="opt-dot">✓</span>10K – 30K/mois</label>
+          <label class="opt"><input type="checkbox" name="ca" value="30-100"><span class="opt-dot">✓</span>30K – 100K/mois</label>
+          <label class="opt"><input type="checkbox" name="ca" value="plus100"><span class="opt-dot">✓</span>+100K/mois</label>
         </div>
-        <span class="err-msg" id="ca-err">Sélectionne au moins une option.</span>
+        <p class="err" id="ca-err">Sélectionne au moins une option.</p>
       </div>
 
       <div class="field" id="f-managed">
-        <label>Combien de personnes as-tu managées simultanément au maximum ?<span class="req">*</span></label>
-        <input type="text" id="managed" placeholder="Ex : 12 personnes — 4 CDI + 8 freelances" required>
-        <span class="err-msg">Ce champ est obligatoire.</span>
+        <label>Nombre max de personnes managées simultanément <span class="req">*</span></label>
+        <input type="text" id="managed" placeholder="Ex : 12 — 4 CDI + 8 freelances">
+        <p class="err">Ce champ est obligatoire.</p>
       </div>
 
       <div class="field" id="f-structure">
-        <label>Dans quel type de structure as-tu évolué ?<span class="req">*</span>
-          <span class="sub">Plusieurs choix possibles.</span>
+        <label>Types de structures dans lesquelles tu as évolué <span class="req">*</span>
+          <span class="hint">Plusieurs réponses possibles.</span>
         </label>
-        <div class="options row">
-          <label class="opt">
-            <input type="checkbox" name="structure" value="infopreneur">
-            <span class="opt-box">✓</span> Infopreneur / Creator
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="structure" value="agence">
-            <span class="opt-box">✓</span> Agence
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="structure" value="startup">
-            <span class="opt-box">✓</span> Startup
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="structure" value="corporate">
-            <span class="opt-box">✓</span> Corporate
-          </label>
-          <label class="opt">
-            <input type="checkbox" name="structure" value="autre">
-            <span class="opt-box">✓</span> Autre
-          </label>
+        <div class="opts wrap">
+          <label class="opt"><input type="checkbox" name="structure" value="infopreneur"><span class="opt-dot">✓</span>Infopreneur / Creator</label>
+          <label class="opt"><input type="checkbox" name="structure" value="agence"><span class="opt-dot">✓</span>Agence</label>
+          <label class="opt"><input type="checkbox" name="structure" value="startup"><span class="opt-dot">✓</span>Startup</label>
+          <label class="opt"><input type="checkbox" name="structure" value="corporate"><span class="opt-dot">✓</span>Corporate</label>
+          <label class="opt"><input type="checkbox" name="structure" value="autre"><span class="opt-dot">✓</span>Autre</label>
         </div>
-        <span class="err-msg" id="structure-err">Sélectionne au moins une option.</span>
+        <p class="err" id="str-err">Sélectionne au moins une option.</p>
       </div>
 
       <div class="field" id="f-fitness">
-        <label>Tu as de l'expérience dans l'univers du fitness ou du coaching sportif ?<span class="req">*</span>
-          <span class="sub">Si oui, laquelle exactement ?</span>
+        <label>Expérience dans l'univers du fitness ou du coaching sportif <span class="req">*</span>
+          <span class="hint">Si oui, laquelle exactement ? Si non, dis-le clairement.</span>
         </label>
-        <textarea id="fitness" placeholder="Ex : J'ai travaillé 2 ans comme ops manager chez un coach fitness qui faisait 80K/mois. J'ai géré l'onboarding clients, les process de suivi et le recrutement des coaches..." required></textarea>
-        <div class="char-counter" id="fitness-cc">0 / 500</div>
-        <span class="err-msg">Ce champ est obligatoire.</span>
+        <textarea id="fitness" placeholder="Ex : J'ai travaillé 2 ans comme ops manager chez un coach fitness à 80K/mois..."></textarea>
+        <p class="counter" id="c-fitness">0 / 500</p>
+        <p class="err">Ce champ est obligatoire.</p>
       </div>
 
       <div class="nav">
-        <button type="button" class="btn-back" onclick="prevStep(2)">← Retour</button>
-        <button type="button" class="btn-next" onclick="nextStep(2)">Continuer →</button>
+        <button type="button" class="btn-back" onclick="prev(2)">← Retour</button>
+        <button type="button" class="btn-next" onclick="next(2)">Continuer →</button>
       </div>
     </div>
 
-    <!-- ── STEP 3 — Compétences ── -->
-    <div class="step" id="step-3">
-      <div class="step-header">
-        <span class="step-num">Bloc 03 — Compétences concrètes</span>
-        <h2 class="step-title">Ce que tu sais vraiment faire</h2>
-        <p class="step-desc">Chaque réponse doit être chiffrée et vérifiable. "J'ai de l'expérience en process" ne suffit pas.</p>
-      </div>
+    <!-- STEP 3 -->
+    <div class="step" id="s3">
+      <p class="step-eyebrow">03 — Compétences</p>
+      <h2 class="step-title">Ce que tu sais faire</h2>
+      <p class="step-desc">Chaque réponse doit être chiffrée et vérifiable.</p>
 
       <div class="field" id="f-process">
-        <label>Décris un process que tu as mis en place de A à Z dans une structure qui scalait.<span class="req">*</span>
-          <span class="sub">Problème identifié → actions concrètes → résultat chiffré.</span>
+        <label>Un process mis en place de A à Z dans une structure qui scalait <span class="req">*</span>
+          <span class="hint">Problème identifié → actions concrètes → résultat chiffré.</span>
         </label>
-        <textarea id="process" rows="5" placeholder="Problème : l'onboarding client prenait 3 semaines et générait 40% de churns au mois 1. J'ai... Résultat : onboarding réduit à 5 jours, churn mois 1 passé de 40% à 8%." required></textarea>
-        <div class="char-counter" id="process-cc">0 / 800</div>
-        <span class="err-msg">Ce champ est obligatoire.</span>
+        <textarea id="process" rows="5" placeholder="Problème : l'onboarding prenait 3 semaines, 40% de churn mois 1. J'ai... Résultat : onboarding à 5 jours, churn mois 1 passé de 40% à 8%."></textarea>
+        <p class="counter" id="c-process">0 / 800</p>
+        <p class="err">Ce champ est obligatoire.</p>
       </div>
 
       <div class="field" id="f-claude">
-        <label>Comment tu utilises Claude au quotidien ? Donne 2 exemples précis et concrets.<span class="req">*</span>
-          <span class="sub">Pas "je l'utilise pour tout". Des cas d'usage réels avec les prompts que tu structures.</span>
+        <label>Comment tu utilises Claude au quotidien — 2 exemples précis <span class="req">*</span>
+          <span class="hint">Pas "je l'utilise pour tout". Des cas d'usage réels avec la logique de tes prompts.</span>
         </label>
-        <textarea id="claude" rows="4" placeholder="1. Analyse de KPIs clients — je colle le CSV d'un client dans Claude avec un prompt structuré pour identifier les patterns de churn...
-2. ..." required></textarea>
-        <div class="char-counter" id="claude-cc">0 / 600</div>
-        <span class="err-msg">Ce champ est obligatoire.</span>
+        <textarea id="claude" rows="4" placeholder="1. Analyse de KPIs clients : je colle le CSV + un prompt structuré pour identifier les patterns de churn...&#10;2. ..."></textarea>
+        <p class="counter" id="c-claude">0 / 600</p>
+        <p class="err">Ce champ est obligatoire.</p>
       </div>
 
       <div class="field" id="f-make">
-        <label>Tu as déjà utilisé Make pour automatiser quoi ?<span class="req">*</span>
-          <span class="sub">Décris une automatisation que tu as construite de A à Z.</span>
+        <label>Une automatisation Make construite de A à Z <span class="req">*</span>
+          <span class="hint">Contexte, modules utilisés, résultat mesurable.</span>
         </label>
-        <textarea id="make" rows="4" placeholder="J'ai construit un scénario Make qui relie Typeform → Notion → Slack. Déclencheur : nouveau client signé... Résultat : 4h/semaine économisées sur l'onboarding admin." required></textarea>
-        <div class="char-counter" id="make-cc">0 / 500</div>
-        <span class="err-msg">Ce champ est obligatoire.</span>
+        <textarea id="make" rows="4" placeholder="J'ai construit un scénario Typeform → Notion → Slack. Déclencheur : nouveau client signé... Résultat : 4h/semaine économisées."></textarea>
+        <p class="counter" id="c-make">0 / 500</p>
+        <p class="err">Ce champ est obligatoire.</p>
       </div>
 
-      <div class="divider"></div>
+      <div class="hr"></div>
 
-      <div class="manychat-section">
-        <div class="manychat-badge">⚡ Compétence clé — ManyChat</div>
-        <div class="field" id="f-manychat-level">
-          <label>Quel est ton niveau de maîtrise de ManyChat ?<span class="req">*</span></label>
-          <div class="options">
-            <label class="opt radio">
-              <input type="radio" name="manychat-level" value="jamais-utilise">
-              <span class="opt-box"></span> Je ne l'ai jamais utilisé
-            </label>
-            <label class="opt radio">
-              <input type="radio" name="manychat-level" value="notions">
-              <span class="opt-box"></span> Notions de base — flows simples
-            </label>
-            <label class="opt radio">
-              <input type="radio" name="manychat-level" value="intermediaire">
-              <span class="opt-box"></span> Intermédiaire — je déploie des automatisations complètes
-            </label>
-            <label class="opt radio">
-              <input type="radio" name="manychat-level" value="expert">
-              <span class="opt-box"></span> Expert — je pilote des KPIs via ManyChat, sequences avancées, intégrations API
-            </label>
+      <div class="highlight">
+        <p class="highlight-label">Compétence clé — ManyChat</p>
+
+        <div class="field" id="f-mc-level" style="margin-bottom:20px">
+          <label>Niveau de maîtrise ManyChat <span class="req">*</span></label>
+          <div class="opts">
+            <label class="opt radio"><input type="radio" name="mc-level" value="jamais"><span class="opt-dot"></span>Je ne l'ai jamais utilisé</label>
+            <label class="opt radio"><input type="radio" name="mc-level" value="notions"><span class="opt-dot"></span>Notions de base — flows simples</label>
+            <label class="opt radio"><input type="radio" name="mc-level" value="intermediaire"><span class="opt-dot"></span>Intermédiaire — automatisations complètes déployées</label>
+            <label class="opt radio"><input type="radio" name="mc-level" value="expert"><span class="opt-dot"></span>Expert — KPIs pilotés via ManyChat, sequences avancées, intégrations API</label>
           </div>
-          <span class="err-msg" id="manychat-level-err">Sélectionne ton niveau.</span>
+          <p class="err" id="mc-level-err">Sélectionne ton niveau.</p>
         </div>
 
-        <div class="field" id="f-manychat-usage">
-          <label>Décris une automatisation ManyChat que tu as construite.<span class="req">*</span>
-            <span class="sub">Contexte, flows créés, canaux utilisés (Instagram DM / WhatsApp / SMS), résultat.</span>
+        <div class="field" id="f-mc-usage">
+          <label>Une automatisation ManyChat que tu as déployée <span class="req">*</span>
+            <span class="hint">Contexte · canaux utilisés (Instagram DM / WhatsApp / SMS) · résultat chiffré.</span>
           </label>
-          <textarea id="manychat-usage" rows="4" placeholder="Ex : Pour un coach fitness à 60K/mois, j'ai mis en place un flow Instagram DM → qualification → booking d'appel. Le bot qualifiait 200+ DMs/jour. Résultat : +35% de calls qualifiés bookés sans intervention humaine..." required></textarea>
-          <div class="char-counter" id="manychat-usage-cc">0 / 600</div>
-          <span class="err-msg">Ce champ est obligatoire.</span>
+          <textarea id="mc-usage" rows="4" placeholder="Pour un coach à 60K/mois, j'ai mis en place un flow Instagram DM → qualification → booking. Le bot qualifiait 200+ DMs/jour. Résultat : +35% de calls qualifiés sans intervention humaine..."></textarea>
+          <p class="counter" id="c-mc-usage">0 / 600</p>
+          <p class="err">Ce champ est obligatoire.</p>
         </div>
 
-        <div class="field" id="f-manychat-kpi">
-          <label>Comment tu pilotes des KPIs via ManyChat ?<span class="req">*</span>
-            <span class="sub">Quels KPIs tu tracks ? Comment tu les extrais ? Quelle cadence de reporting ? Comment tu prends des décisions business depuis ces données ?</span>
+        <div class="field" id="f-mc-kpi" style="margin-bottom:0">
+          <label>Comment tu pilotes des KPIs via ManyChat <span class="req">*</span>
+            <span class="hint">Quels KPIs tu tracks · comment tu les extrais · quelle cadence de reporting · comment tu prends des décisions depuis ces données.</span>
           </label>
-          <textarea id="manychat-kpi" rows="4" placeholder="Ex : Je track taux d'ouverture des sequences, taux de conversion DM→call, coût par conversation. Je connecte ManyChat à Sheets via Make pour un dashboard temps réel. Chaque semaine je..." required></textarea>
-          <div class="char-counter" id="manychat-kpi-cc">0 / 600</div>
-          <span class="err-msg">Ce champ est obligatoire.</span>
+          <textarea id="mc-kpi" rows="4" placeholder="Je track le taux d'ouverture des sequences, taux de conversion DM→call, coût par conversation. Je connecte ManyChat à Sheets via Make pour un dashboard temps réel. Chaque semaine..."></textarea>
+          <p class="counter" id="c-mc-kpi">0 / 600</p>
+          <p class="err">Ce champ est obligatoire.</p>
         </div>
       </div>
 
-      <div class="field" id="f-desorganise">
-        <label>Qu'est-ce que tu mets en place en priorité quand tu arrives dans une structure désorganisée ?<span class="req">*</span>
-          <span class="sub">Pas de réponse théorique. Étapes concrètes dans l'ordre.</span>
+      <div class="field" id="f-desorg">
+        <label>Priorités quand tu arrives dans une structure désorganisée <span class="req">*</span>
+          <span class="hint">Étapes concrètes dans l'ordre. Pas de réponse théorique.</span>
         </label>
-        <textarea id="desorganise" rows="4" placeholder="Semaine 1 : audit des process existants en mode observateur... Semaine 2 : identification des 3 points de friction majeurs... etc." required></textarea>
-        <div class="char-counter" id="desorganise-cc">0 / 600</div>
-        <span class="err-msg">Ce champ est obligatoire.</span>
+        <textarea id="desorg" rows="4" placeholder="Semaine 1 : audit des process existants en mode observateur...&#10;Semaine 2 : identification des 3 points de friction majeurs..."></textarea>
+        <p class="counter" id="c-desorg">0 / 600</p>
+        <p class="err">Ce champ est obligatoire.</p>
       </div>
 
       <div class="nav">
-        <button type="button" class="btn-back" onclick="prevStep(3)">← Retour</button>
-        <button type="button" class="btn-next" onclick="nextStep(3)">Continuer →</button>
+        <button type="button" class="btn-back" onclick="prev(3)">← Retour</button>
+        <button type="button" class="btn-next" onclick="next(3)">Continuer →</button>
       </div>
     </div>
 
-    <!-- ── STEP 4 — Mindset ── -->
-    <div class="step" id="step-4">
-      <div class="step-header">
-        <span class="step-num">Bloc 04 — Mindset & Fit</span>
-        <h2 class="step-title">Qui tu es vraiment</h2>
-        <p class="step-desc">On lit ces réponses en premier. Les formules LinkedIn ne passent pas.</p>
-      </div>
+    <!-- STEP 4 -->
+    <div class="step" id="s4">
+      <p class="step-eyebrow">04 — Mindset</p>
+      <h2 class="step-title">Qui tu es vraiment</h2>
+      <p class="step-desc">Ces réponses sont lues en premier. Les formules LinkedIn sont filtrées automatiquement.</p>
 
       <div class="field" id="f-decision">
-        <label>Décris une situation où tu as pris une décision importante sans validation de ta direction.<span class="req">*</span>
-          <span class="sub">Contexte, décision prise, conséquences, ce que tu ferais différemment.</span>
+        <label>Une décision importante prise sans validation de ta direction <span class="req">*</span>
+          <span class="hint">Contexte · décision prise · conséquences · ce que tu ferais différemment.</span>
         </label>
-        <textarea id="decision" rows="5" placeholder="Contexte : mon CEO était injoignable pendant 3 jours. Un client clé menaçait de partir. J'ai décidé de..." required></textarea>
-        <div class="char-counter" id="decision-cc">0 / 700</div>
-        <span class="err-msg">Ce champ est obligatoire.</span>
+        <textarea id="decision" rows="5" placeholder="Contexte : mon CEO était injoignable 3 jours. Un client clé menaçait de partir. J'ai décidé de..."></textarea>
+        <p class="counter" id="c-decision">0 / 700</p>
+        <p class="err">Ce champ est obligatoire.</p>
       </div>
 
       <div class="field" id="f-refuse">
-        <label>Quelle est la chose que tu refuses de faire, même sous pression ?<span class="req">*</span>
-          <span class="sub">Réponse directe. Une phrase, deux maximum.</span>
+        <label>La chose que tu refuses de faire, même sous pression <span class="req">*</span>
+          <span class="hint">Réponse directe. Une ou deux phrases maximum.</span>
         </label>
-        <textarea id="refuse" rows="2" placeholder="Je refuse de..." required></textarea>
-        <div class="char-counter" id="refuse-cc">0 / 200</div>
-        <span class="err-msg">Ce champ est obligatoire.</span>
+        <textarea id="refuse" rows="2" placeholder="Je refuse de..."></textarea>
+        <p class="counter" id="c-refuse">0 / 200</p>
+        <p class="err">Ce champ est obligatoire.</p>
       </div>
 
       <div class="field" id="f-pourquoi">
-        <label>Pourquoi Rivia, pourquoi ce poste, pourquoi maintenant ?<span class="req">*</span>
-          <span class="sub">Les réponses génériques ("je cherche un challenge / j'aime les structures qui scalent") sont filtrées automatiquement. Sois spécifique.</span>
+        <label>Pourquoi Rivia, pourquoi ce poste, pourquoi maintenant <span class="req">*</span>
+          <span class="hint">Les réponses génériques sont filtrées. Sois spécifique sur ce que tu sais de Rivia et pourquoi c'est maintenant.</span>
         </label>
-        <textarea id="pourquoi" rows="5" placeholder="Réponse honnête et précise attendue ici..." required></textarea>
-        <div class="char-counter" id="pourquoi-cc">0 / 700</div>
-        <span class="err-msg">Ce champ est obligatoire.</span>
+        <textarea id="pourquoi" rows="5" placeholder="Réponse honnête et précise..."></textarea>
+        <p class="counter" id="c-pourquoi">0 / 700</p>
+        <p class="err">Ce champ est obligatoire.</p>
       </div>
 
       <div class="field" id="f-remu">
-        <label>Quelle rémunération fixe minimale tu vises ?<span class="req">*</span>
-          <span class="sub">Sois honnête. Ça nous fait gagner du temps à tous les deux.</span>
+        <label>Rémunération fixe minimale visée <span class="req">*</span>
+          <span class="hint">Sois honnête. Ça fait gagner du temps aux deux parties.</span>
         </label>
-        <input type="text" id="remu" placeholder="Ex : 4 500€ / mois fixe minimum" required>
-        <span class="err-msg">Ce champ est obligatoire.</span>
+        <input type="text" id="remu" placeholder="Ex : 4 500€ / mois fixe minimum">
+        <p class="err">Ce champ est obligatoire.</p>
       </div>
 
       <div class="field" id="f-dispo">
-        <label>Tu es disponible quand ?<span class="req">*</span></label>
-        <div class="options">
-          <label class="opt radio">
-            <input type="radio" name="dispo" value="immediat">
-            <span class="opt-box"></span> Immédiatement
-          </label>
-          <label class="opt radio">
-            <input type="radio" name="dispo" value="2semaines">
-            <span class="opt-box"></span> Dans 2 semaines
-          </label>
-          <label class="opt radio">
-            <input type="radio" name="dispo" value="1mois">
-            <span class="opt-box"></span> Dans 1 mois
-          </label>
-          <label class="opt radio">
-            <input type="radio" name="dispo" value="plus">
-            <span class="opt-box"></span> Plus d'un mois
-          </label>
+        <label>Disponibilité <span class="req">*</span></label>
+        <div class="opts wrap">
+          <label class="opt radio"><input type="radio" name="dispo" value="immediat"><span class="opt-dot"></span>Immédiatement</label>
+          <label class="opt radio"><input type="radio" name="dispo" value="2semaines"><span class="opt-dot"></span>Dans 2 semaines</label>
+          <label class="opt radio"><input type="radio" name="dispo" value="1mois"><span class="opt-dot"></span>Dans 1 mois</label>
+          <label class="opt radio"><input type="radio" name="dispo" value="plus"><span class="opt-dot"></span>Plus d'un mois</label>
         </div>
-        <span class="err-msg" id="dispo-err">Sélectionne ta disponibilité.</span>
+        <p class="err" id="dispo-err">Sélectionne ta disponibilité.</p>
       </div>
 
       <div class="nav">
-        <button type="button" class="btn-back" onclick="prevStep(4)">← Retour</button>
-        <button type="button" class="btn-next" onclick="nextStep(4)">Continuer →</button>
+        <button type="button" class="btn-back" onclick="prev(4)">← Retour</button>
+        <button type="button" class="btn-next" onclick="next(4)">Continuer →</button>
       </div>
     </div>
 
-    <!-- ── STEP 5 — Vidéo ── -->
-    <div class="step" id="step-5">
-      <div class="step-header">
-        <span class="step-num">Bloc 05 — Vidéo de présentation</span>
-        <h2 class="step-title">Montre-nous qui tu es</h2>
-        <p class="step-desc">Enregistre une vidéo de <strong>2 à 3 minutes maximum</strong>. Présente-toi, explique pourquoi tu es la bonne personne, et convaincs-nous. Pas de mise en scène. Pas de prompteur. On veut voir qui tu es vraiment.</p>
-      </div>
+    <!-- STEP 5 -->
+    <div class="step" id="s5">
+      <p class="step-eyebrow">05 — Vidéo</p>
+      <h2 class="step-title">Montre-nous qui tu es</h2>
+      <p class="step-desc">2 à 3 minutes maximum. Présente-toi, explique pourquoi tu es la bonne personne. Pas de mise en scène — on veut voir qui tu es vraiment.</p>
 
-      <div class="warning-box" style="margin-bottom:28px;max-width:100%">
-        <strong>Formats acceptés :</strong> YouTube (non listé), Loom, Google Drive, Dropbox. Assure-toi que le lien est accessible avant de soumettre.<br><br>
-        <strong>Sans vidéo, la candidature ne sera pas traitée.</strong>
+      <div class="highlight" style="margin-bottom:28px">
+        <p style="font-size:13px;color:var(--text2);line-height:1.7">
+          <strong style="color:var(--text)">Formats acceptés :</strong> YouTube non listé, Loom, Google Drive, Dropbox.<br>
+          Vérifie que le lien est accessible avant de soumettre.<br><br>
+          <strong style="color:var(--error)">Sans vidéo, la candidature ne sera pas traitée.</strong>
+        </p>
       </div>
 
       <div class="field" id="f-video">
-        <label>Lien de ta vidéo<span class="req">*</span>
-          <span class="sub">YouTube non listé, Loom, Drive, Dropbox — assure-toi que l'accès est ouvert.</span>
+        <label>Lien de ta vidéo <span class="req">*</span>
+          <span class="hint">YouTube non listé · Loom · Drive · Dropbox</span>
         </label>
-        <input type="url" id="video" placeholder="https://loom.com/share/..." required>
-        <span class="err-msg">Lien vidéo obligatoire.</span>
+        <input type="url" id="video" placeholder="https://loom.com/share/...">
+        <p class="err">Lien vidéo obligatoire.</p>
       </div>
 
-      <div class="divider"></div>
+      <div class="hr"></div>
 
       <div class="field">
-        <label>Quelque chose à ajouter ?<span style="color:var(--dim);margin-left:6px;font-size:11px">(optionnel)</span></label>
-        <textarea id="extra" rows="3" placeholder="Un contexte supplémentaire, une info importante qu'on n'aurait pas demandée..."></textarea>
+        <label>Quelque chose à ajouter ? <span style="font-size:11px;color:var(--text3);font-weight:300">(optionnel)</span></label>
+        <textarea id="extra" rows="3" placeholder="Un contexte supplémentaire, une information que tu veux qu'on sache..."></textarea>
       </div>
 
       <div class="nav">
-        <button type="button" class="btn-back" onclick="prevStep(5)">← Retour</button>
-        <button type="button" class="btn-next" onclick="nextStep(5)">Vérifier ma candidature →</button>
+        <button type="button" class="btn-back" onclick="prev(5)">← Retour</button>
+        <button type="button" class="btn-next" onclick="next(5)">Vérifier ma candidature →</button>
       </div>
     </div>
 
-    <!-- ── STEP 6 — Confirmation ── -->
-    <div class="step" id="step-6">
-      <div class="step-header">
-        <span class="step-num">Bloc 06 — Confirmation</span>
-        <h2 class="step-title">Dernier vérification</h2>
-        <p class="step-desc">En soumettant, tu confirmes avoir répondu honnêtement et être disponible pour un appel WhatsApp dans les 48h suivant notre retour.</p>
+    <!-- STEP 6 -->
+    <div class="step" id="s6">
+      <p class="step-eyebrow">06 — Confirmation</p>
+      <h2 class="step-title">Dernière étape</h2>
+      <p class="step-desc">Vérifie tes informations avant d'envoyer.</p>
+
+      <div class="recap">
+        <p class="recap-title">Résumé de ta candidature</p>
+        <div id="recap-rows"></div>
       </div>
 
-      <div id="recap" style="background:var(--s1);border:1px solid var(--b2);border-radius:6px;padding:24px;margin-bottom:28px">
-        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:16px">Résumé de ta candidature</div>
-        <div id="recap-content"></div>
-      </div>
-
-      <div class="field" id="f-confirm">
-        <div class="options">
-          <label class="opt">
-            <input type="checkbox" id="confirm1">
-            <span class="opt-box">✓</span> Je confirme être disponible pour un appel WhatsApp dans les 48h suivant votre retour.
-          </label>
-          <label class="opt">
-            <input type="checkbox" id="confirm2">
-            <span class="opt-box">✓</span> Je confirme que toutes mes réponses sont honnêtes et vérifiables.
-          </label>
-          <label class="opt">
-            <input type="checkbox" id="confirm3">
-            <span class="opt-box">✓</span> Je comprends que cette candidature sans vidéo ne sera pas traitée.
-          </label>
+      <div class="field" id="f-confirms">
+        <div class="opts">
+          <label class="opt"><input type="checkbox" id="c1"><span class="opt-dot">✓</span>Je serai disponible pour un appel WhatsApp dans les 48h suivant votre retour.</label>
+          <label class="opt"><input type="checkbox" id="c2"><span class="opt-dot">✓</span>Toutes mes réponses sont honnêtes et vérifiables.</label>
+          <label class="opt"><input type="checkbox" id="c3"><span class="opt-dot">✓</span>Je comprends que sans vidéo, ma candidature ne sera pas traitée.</label>
         </div>
-        <span class="err-msg" id="confirm-err">Tu dois cocher les 3 cases.</span>
+        <p class="err" id="confirms-err">Tu dois cocher les 3 cases pour soumettre.</p>
       </div>
 
       <div class="nav">
-        <button type="button" class="btn-back" onclick="prevStep(6)">← Retour</button>
-        <button type="button" class="btn-next" id="submit-btn" onclick="submitForm()" style="background:var(--gold)">Envoyer ma candidature ✓</button>
+        <button type="button" class="btn-back" onclick="prev(6)">← Retour</button>
+        <button type="button" class="btn-next" id="submit-btn" onclick="submitForm()" style="max-width:280px;background:var(--success)">
+          Envoyer ma candidature ✓
+        </button>
       </div>
     </div>
 
   </form>
 </div>
 
-<!-- ── SUCCESS ── -->
-<div id="success" style="display:none;min-height:100vh;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px;">
-  <div class="check-circle">✓</div>
-  <h2 style="font-family:'Syne',sans-serif;font-size:32px;font-weight:700;margin-bottom:16px">Candidature envoyée.</h2>
-  <p style="color:var(--mid);font-size:15px;max-width:420px;line-height:1.7;margin-bottom:32px">
-    On a bien reçu ta candidature. Si ton profil correspond, tu recevras un message WhatsApp dans les 48h pour un premier échange.
-  </p>
-  <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:0.1em">RIVIA COACHING · DUBAI</div>
+<!-- SUCCESS -->
+<div id="success">
+  <div class="check">✓</div>
+  <h2>Candidature envoyée.</h2>
+  <p>On a bien reçu ta candidature. Si ton profil correspond, tu recevras un message WhatsApp dans les 48h.</p>
+  <p style="margin-top:24px;font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--text3)">RIVIA COACHING · DUBAI</p>
 </div>
 
 <script>
-let currentStep = 1;
-const totalSteps = 6;
+const STEPS=6;
+const LABELS=['Informations de base','Expérience & Contexte','Compétences concrètes','Mindset & Fit','Vidéo de présentation','Confirmation'];
+let cur=1;
 
-const stepLabels = [
-  'Informations de base',
-  'Expérience & Contexte',
-  'Compétences concrètes',
-  'Mindset & Fit',
-  'Vidéo de présentation',
-  'Confirmation'
-];
-
-function startForm() {
-  document.getElementById('intro').style.display = 'none';
-  document.getElementById('form-wrapper').style.display = 'block';
-  window.scrollTo(0,0);
+function startForm(){
+  document.getElementById('intro').style.display='none';
+  document.getElementById('form-wrapper').style.display='block';
+  scrollTo(0,0);
 }
 
-function updateProgress(step) {
-  const pct = (step / totalSteps) * 100;
-  document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('progress-count').textContent = step + ' / ' + totalSteps;
-  document.getElementById('progress-label').textContent = stepLabels[step - 1];
+function showStep(n){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  document.getElementById('prog-bar').style.width=(n/STEPS*100)+'%';
+  document.getElementById('prog-frac').textContent=n+' / '+STEPS;
+  document.getElementById('prog-name').textContent=LABELS[n-1];
+  scrollTo({top:0,behavior:'smooth'});
 }
 
-function showStep(n) {
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById('step-' + n).classList.add('active');
-  updateProgress(n);
-  window.scrollTo({top:0, behavior:'smooth'});
-}
+function validate(step){
+  let ok=true;
+  document.querySelectorAll('.field.bad').forEach(f=>f.classList.remove('bad'));
+  document.querySelectorAll('.err.show').forEach(e=>e.classList.remove('show'));
 
-function validateStep(step) {
-  let ok = true;
-
-  // Clear previous errors
-  document.querySelectorAll('.field.has-error').forEach(f => f.classList.remove('has-error'));
-  document.querySelectorAll('.err-msg.show').forEach(e => e.classList.remove('show'));
-
-  if (step === 1) {
-    const fields = ['prenom','email','whatsapp','linkedin','ville'];
-    fields.forEach(id => {
-      const el = document.getElementById(id);
-      const fieldEl = document.getElementById('f-' + id);
-      if (!el.value.trim() || (id==='email' && !el.value.includes('@'))) {
-        fieldEl.classList.add('has-error');
-        fieldEl.querySelector('.err-msg').classList.add('show');
-        ok = false;
-      }
-    });
+  function req(id){
+    const el=document.getElementById(id);
+    const f=document.getElementById('f-'+id);
+    if(!el||!el.value.trim()){f&&f.classList.add('bad');f&&f.querySelector('.err')?.classList.add('show');ok=false;}
   }
-
-  if (step === 2) {
-    const ca = document.querySelectorAll('input[name="ca"]:checked');
-    if (!ca.length) { document.getElementById('ca-err').classList.add('show'); ok = false; }
-    const str = document.querySelectorAll('input[name="structure"]:checked');
-    if (!str.length) { document.getElementById('structure-err').classList.add('show'); ok = false; }
-    ['managed','fitness'].forEach(id => {
-      const el = document.getElementById(id);
-      if (!el.value.trim()) {
-        document.getElementById('f-' + id).classList.add('has-error');
-        document.getElementById('f-' + id).querySelector('.err-msg').classList.add('show');
-        ok = false;
-      }
-    });
+  function reqEmail(id){
+    const el=document.getElementById(id);const f=document.getElementById('f-'+id);
+    if(!el||!el.value.includes('@')){f&&f.classList.add('bad');f&&f.querySelector('.err')?.classList.add('show');ok=false;}
   }
-
-  if (step === 3) {
-    ['process','claude','make','manychat-usage','manychat-kpi','desorganise'].forEach(id => {
-      const el = document.getElementById(id);
-      const fid = id === 'manychat-usage' || id === 'manychat-kpi' ? 'f-' + id : 'f-' + id;
-      const fieldEl = document.getElementById(fid);
-      if (fieldEl && !el.value.trim()) {
-        fieldEl.classList.add('has-error');
-        fieldEl.querySelector('.err-msg').classList.add('show');
-        ok = false;
-      }
-    });
-    const ml = document.querySelector('input[name="manychat-level"]:checked');
-    if (!ml) { document.getElementById('manychat-level-err').classList.add('show'); ok = false; }
+  function reqChecks(name,errId){
+    if(!document.querySelectorAll(`input[name="${name}"]:checked`).length){
+      document.getElementById(errId)?.classList.add('show');ok=false;
+    }
   }
-
-  if (step === 4) {
-    ['decision','refuse','pourquoi','remu'].forEach(id => {
-      const el = document.getElementById(id);
-      if (!el.value.trim()) {
-        document.getElementById('f-' + id).classList.add('has-error');
-        document.getElementById('f-' + id).querySelector('.err-msg').classList.add('show');
-        ok = false;
-      }
-    });
-    const dispo = document.querySelector('input[name="dispo"]:checked');
-    if (!dispo) { document.getElementById('dispo-err').classList.add('show'); ok = false; }
-  }
-
-  if (step === 5) {
-    const el = document.getElementById('video');
-    if (!el.value.trim()) {
-      document.getElementById('f-video').classList.add('has-error');
-      document.getElementById('f-video').querySelector('.err-msg').classList.add('show');
-      ok = false;
+  function reqRadio(name,errId){
+    if(!document.querySelector(`input[name="${name}"]:checked`)){
+      document.getElementById(errId)?.classList.add('show');ok=false;
     }
   }
 
+  if(step===1){req('prenom');reqEmail('email');req('whatsapp');req('linkedin');req('ville');}
+  if(step===2){reqChecks('ca','ca-err');req('managed');reqChecks('structure','str-err');req('fitness');}
+  if(step===3){req('process');req('claude');req('make');reqRadio('mc-level','mc-level-err');req('mc-usage');req('mc-kpi');req('desorg');}
+  if(step===4){req('decision');req('refuse');req('pourquoi');req('remu');reqRadio('dispo','dispo-err');}
+  if(step===5){req('video');}
   return ok;
 }
 
-function nextStep(current) {
-  if (!validateStep(current)) return;
-  if (current === 5) buildRecap();
-  currentStep = current + 1;
-  showStep(currentStep);
+function next(n){
+  if(!validate(n))return;
+  if(n===5)buildRecap();
+  cur=n+1;showStep(cur);
 }
 
-function prevStep(current) {
-  currentStep = current - 1;
-  showStep(currentStep);
+function prev(n){cur=n-1;showStep(cur);}
+
+function buildRecap(){
+  const g=id=>document.getElementById(id)?.value||'—';
+  const checks=name=>Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(e=>e.value).join(', ')||'—';
+  const radio=name=>document.querySelector(`input[name="${name}"]:checked`)?.value||'—';
+  const rows=[
+    ['Nom',g('prenom')],['Email',g('email')],['WhatsApp',g('whatsapp')],
+    ['LinkedIn',g('linkedin')],['Ville',g('ville')],
+    ['CA géré',checks('ca')],['Managé',g('managed')],['Structures',checks('structure')],
+    ['ManyChat',radio('mc-level')],['Dispo',radio('dispo')],['Rémunération',g('remu')],
+    ['Vidéo',g('video')],
+  ];
+  document.getElementById('recap-rows').innerHTML=rows.map(([k,v])=>
+    `<div class="recap-row"><span class="recap-k">${k}</span><span class="recap-v">${v}</span></div>`
+  ).join('');
 }
 
-function buildRecap() {
-  const get = id => document.getElementById(id)?.value || '—';
-  const checked = name => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el=>el.value).join(', ') || '—';
-  const radio = name => document.querySelector(`input[name="${name}"]:checked`)?.value || '—';
+async function submitForm(){
+  const c1=document.getElementById('c1').checked;
+  const c2=document.getElementById('c2').checked;
+  const c3=document.getElementById('c3').checked;
+  if(!c1||!c2||!c3){document.getElementById('confirms-err').classList.add('show');return;}
 
-  const html = `
-    <div style="display:grid;gap:8px;font-size:13px;">
-      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">Nom</span><span>${get('prenom')}</span></div>
-      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">Email</span><span>${get('email')}</span></div>
-      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">WhatsApp</span><span>${get('whatsapp')}</span></div>
-      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">LinkedIn</span><span style="color:var(--gold)">${get('linkedin')}</span></div>
-      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">CA géré</span><span>${checked('ca')}</span></div>
-      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">Structures</span><span>${checked('structure')}</span></div>
-      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">ManyChat</span><span style="color:var(--gold)">${radio('manychat-level')}</span></div>
-      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">Dispo</span><span>${radio('dispo')}</span></div>
-      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">Rémunération</span><span>${get('remu')}</span></div>
-      <div style="display:flex;gap:8px"><span style="color:var(--mid);min-width:140px">Vidéo</span><span style="color:var(--gold)">${get('video')}</span></div>
-    </div>`;
-  document.getElementById('recap-content').innerHTML = html;
-}
+  const btn=document.getElementById('submit-btn');
+  btn.textContent='Envoi en cours...';btn.disabled=true;
 
-function submitForm() {
-  const c1 = document.getElementById('confirm1').checked;
-  const c2 = document.getElementById('confirm2').checked;
-  const c3 = document.getElementById('confirm3').checked;
-  if (!c1 || !c2 || !c3) {
-    document.getElementById('confirm-err').classList.add('show');
-    return;
-  }
+  const g=id=>document.getElementById(id)?.value||'';
+  const checks=name=>Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(e=>e.value);
+  const radio=name=>document.querySelector(`input[name="${name}"]:checked`)?.value||'';
 
-  const btn = document.getElementById('submit-btn');
-  btn.textContent = 'Envoi en cours...';
-  btn.disabled = true;
-
-  const get = id => document.getElementById(id)?.value || '';
-  const checked = name => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el=>el.value);
-  const radio = name => document.querySelector(`input[name="${name}"]:checked`)?.value || '';
-
-  const payload = {
-    prenom: get('prenom'),
-    email: get('email'),
-    whatsapp: get('whatsapp'),
-    linkedin: get('linkedin'),
-    ville: get('ville'),
-    ca_fourchettes: checked('ca'),
-    managed: get('managed'),
-    structures: checked('structure'),
-    fitness: get('fitness'),
-    process: get('process'),
-    claude_usage: get('claude'),
-    make_usage: get('make'),
-    manychat_level: radio('manychat-level'),
-    manychat_usage: get('manychat-usage'),
-    manychat_kpi: get('manychat-kpi'),
-    desorganise: get('desorganise'),
-    decision: get('decision'),
-    refuse: get('refuse'),
-    pourquoi: get('pourquoi'),
-    remuneration: get('remu'),
-    disponibilite: radio('dispo'),
-    video: get('video'),
-    extra: get('extra'),
-    submitted_at: new Date().toISOString()
+  const payload={
+    prenom:g('prenom'),email:g('email'),whatsapp:g('whatsapp'),
+    linkedin:g('linkedin'),ville:g('ville'),
+    ca_fourchettes:checks('ca'),managed:g('managed'),
+    structures:checks('structure'),fitness:g('fitness'),
+    process:g('process'),claude_usage:g('claude'),make_usage:g('make'),
+    manychat_level:radio('mc-level'),manychat_usage:g('mc-usage'),manychat_kpi:g('mc-kpi'),
+    desorganise:g('desorg'),decision:g('decision'),refuse:g('refuse'),
+    pourquoi:g('pourquoi'),remuneration:g('remu'),disponibilite:radio('dispo'),
+    video:g('video'),extra:g('extra'),
+    submitted_at:new Date().toISOString()
   };
 
-  fetch('https://content-studio-production-8cb0.up.railway.app/api/candidature', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  })
-  .then(() => {
-    document.getElementById('form-wrapper').style.display = 'none';
-    document.getElementById('success').style.display = 'flex';
-    window.scrollTo(0,0);
-  })
-  .catch(() => {
-    // Show success anyway (form data is complete)
-    document.getElementById('form-wrapper').style.display = 'none';
-    document.getElementById('success').style.display = 'flex';
-    window.scrollTo(0,0);
-  });
+  try{
+    await fetch('https://content-studio-production-8cb0.up.railway.app/api/candidature',{
+      method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)
+    });
+  }catch(e){console.error(e);}
+
+  document.getElementById('form-wrapper').style.display='none';
+  const s=document.getElementById('success');
+  s.style.display='flex';
+  scrollTo(0,0);
 }
 
 // Character counters
-const counters = {
-  'fitness': 500, 'process': 800, 'claude': 600, 'make': 500,
-  'manychat-usage': 600, 'manychat-kpi': 600, 'desorganise': 600,
-  'decision': 700, 'refuse': 200, 'pourquoi': 700
-};
-
-Object.entries(counters).forEach(([id, max]) => {
-  const el = document.getElementById(id);
-  const cc = document.getElementById(id + '-cc');
-  if (!el || !cc) return;
-  el.addEventListener('input', () => {
-    const len = el.value.length;
-    cc.textContent = len + ' / ' + max;
-    cc.className = 'char-counter' + (len > max * 0.9 ? (len > max ? ' over' : ' warn') : '');
+const ctrs={fitness:500,process:800,claude:600,make:500,'mc-usage':600,'mc-kpi':600,desorg:600,decision:700,refuse:200,pourquoi:700};
+Object.entries(ctrs).forEach(([id,max])=>{
+  const el=document.getElementById(id);
+  const cc=document.getElementById('c-'+id);
+  if(!el||!cc)return;
+  el.addEventListener('input',()=>{
+    const n=el.value.length;
+    cc.textContent=n+' / '+max;
+    cc.className='counter'+(n>max?(' over'):(n>max*.85?' warn':''));
   });
 });
 
-// Checkbox / radio styling
-document.addEventListener('change', e => {
-  if (e.target.type === 'checkbox') {
-    const opt = e.target.closest('.opt');
-    if (opt) opt.classList.toggle('selected', e.target.checked);
+// Option styling
+document.addEventListener('change',e=>{
+  if(e.target.type==='checkbox'){
+    e.target.closest('.opt')?.classList.toggle('on',e.target.checked);
   }
-  if (e.target.type === 'radio') {
-    const name = e.target.name;
-    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
-      r.closest('.opt')?.classList.remove('selected');
-    });
-    e.target.closest('.opt')?.classList.add('selected');
+  if(e.target.type==='radio'){
+    const name=e.target.name;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r=>r.closest('.opt')?.classList.remove('on'));
+    e.target.closest('.opt')?.classList.add('on');
   }
 });
 </script>
