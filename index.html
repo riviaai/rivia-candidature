@@ -752,9 +752,27 @@ textarea{resize:vertical;min-height:100px;line-height:1.6}
 <!-- SUCCESS -->
 <div id="success">
   <div class="check">✓</div>
-  <h2>Candidature envoyée.</h2>
-  <p>On a bien reçu ta candidature. Si ton profil correspond, tu recevras un message WhatsApp dans les 48h.</p>
-  <p style="margin-top:24px;font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--text3)">RIVIA COACHING · DUBAI</p>
+  <h2>Candidature enregistrée.</h2>
+  <p style="margin-bottom:32px">Dernière étape : envoie ta synthèse directement sur WhatsApp pour que ta candidature soit prise en compte.</p>
+
+  <a id="wa-link" href="#" target="_blank" style="
+    display:inline-flex;align-items:center;gap:10px;
+    background:#25D366;color:white;
+    font-size:15px;font-weight:600;
+    padding:16px 32px;border-radius:100px;
+    text-decoration:none;
+    box-shadow:0 4px 16px rgba(37,211,102,0.35);
+    transition:all 200ms;
+  ">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.524 5.835L.057 23.167a.75.75 0 00.916.932l5.453-1.431A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.497-5.2-1.367l-.373-.214-3.876 1.018 1.036-3.77-.234-.386A9.952 9.952 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Envoyer ma synthèse sur WhatsApp
+  </a>
+
+  <p style="margin-top:20px;font-size:12px;color:var(--text3);line-height:1.6;max-width:360px">
+    Un message pré-rempli avec tes réponses clés va s'ouvrir.<br>Envoie-le tel quel — ne le modifie pas.
+  </p>
+
+  <p style="margin-top:40px;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--b2)">RIVIA COACHING</p>
 </div>
 
 <script>
@@ -872,6 +890,29 @@ async function submitForm(){
       method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)
     });
   }catch(e){console.error(e);}
+
+  const mcLabels={expert:'Expert',intermediaire:'Intermédiaire',notions:'Notions',jamais:'Jamais utilisé'};
+  const dispoLabels={immediat:'Immédiat','1mois':'Dans 1 mois','1-3mois':'Dans 1 à 3 mois'};
+  const msg=[
+    '🔵 CANDIDATURE — HEAD OF OPS RIVIA',
+    '',
+    'Nom : '+payload.prenom,
+    'Email : '+payload.email,
+    'WhatsApp : '+payload.whatsapp,
+    'Ville : '+payload.ville,
+    payload.linkedin?'LinkedIn : '+payload.linkedin:'',
+    '',
+    'CA géré : '+(Array.isArray(payload.ca_fourchettes)?payload.ca_fourchettes.join(', '):payload.ca_fourchettes||'—'),
+    'Structures : '+(Array.isArray(payload.structures)?payload.structures.join(', '):payload.structures||'—'),
+    'ManyChat : '+(mcLabels[payload.manychat_level]||payload.manychat_level||'—'),
+    'Dispo : '+(dispoLabels[payload.disponibilite]||payload.disponibilite||'—'),
+    'Rémunération : '+(payload.remuneration||'—'),
+    payload.video?'\n🎬 Vidéo : '+payload.video:'',
+    '\n📝 Pourquoi Rivia :',
+    (payload.pourquoi||'').slice(0,400)+(payload.pourquoi&&payload.pourquoi.length>400?'...':''),
+  ].filter(l=>l!=='').join('\n');
+
+  document.getElementById('wa-link').href='https://wa.me/33601588423?text='+encodeURIComponent(msg);
 
   document.getElementById('form-wrapper').style.display='none';
   const s=document.getElementById('success');
