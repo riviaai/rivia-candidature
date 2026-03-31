@@ -350,15 +350,90 @@ textarea{resize:vertical;min-height:100px;line-height:1.6}
     <span class="pill accent">Claude avancé</span>
   </div>
 
-  <button class="btn-primary" onclick="startForm()">
-    Candidater maintenant
-    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" fill="none"/></svg>
+  <button class="btn-primary" onclick="showOffer()">
+    Voir l'offre complète
+    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" fill="none"/></svg>
   </button>
-
-  <div class="alert" style="margin-top:40px">
-    <strong>Avant de commencer :</strong> ce formulaire prend 20–30 minutes. Chaque réponse est lue. Les candidatures sans vidéo ou sans WhatsApp sont automatiquement écartées.
-  </div>
 </section>
+
+<!-- OFFRE -->
+<div id="offer" style="display:none">
+  <div style="max-width:720px;margin:0 auto;padding:64px 24px 100px">
+
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:48px">
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="12" fill="#0023DC"/><path d="M28.7764 13.6001H19.2237C16.122 13.6001 13.6 16.1221 13.6 19.2238V28.7764C13.6 31.8781 16.122 34.4001 19.2237 34.4001H28.7764C31.878 34.4001 34.4 31.8781 34.4 28.7764V19.2238C34.4 16.1221 31.878 13.6001 28.7764 13.6001ZM15.9627 19.2238C15.9627 17.4274 17.4273 15.9628 19.2237 15.9628H22.5996C22.7456 16.4363 22.8209 16.9274 22.8209 17.4274C22.8209 20.1485 20.6086 22.3608 17.8874 22.3608C17.2237 22.3608 16.5689 22.228 15.9672 21.9758V19.2193L15.9627 19.2238ZM22.2103 32.0374H19.2237C17.4273 32.0374 15.9627 30.5728 15.9627 28.7764V25.1173C16.5645 24.8607 17.2193 24.7324 17.883 24.7324C20.6041 24.7324 22.8164 26.9447 22.8164 29.6658C22.8164 30.5065 22.6085 31.3162 22.2103 32.0374ZM23.9978 25.6881C23.4403 24.8341 22.7102 24.1041 21.8563 23.5466C22.7102 22.9891 23.4403 22.259 23.9978 21.4051C24.5553 22.259 25.2854 22.9891 26.1393 23.5466C25.2854 24.1041 24.5553 24.8341 23.9978 25.6881ZM32.0329 28.7764C32.0329 30.5728 30.5683 32.0374 28.7719 32.0374H25.7853C25.3871 31.3162 25.1792 30.5065 25.1792 29.6658C25.1792 26.9447 27.3915 24.7324 30.1126 24.7324C30.7763 24.7324 31.4311 24.8651 32.0329 25.1173V28.7764ZM32.0329 21.9803C31.4311 22.2369 30.7763 22.3652 30.1126 22.3652C27.3915 22.3652 25.1792 20.1529 25.1792 17.4318C25.1792 16.9274 25.2544 16.4363 25.4004 15.9673H28.7764C30.5727 15.9673 32.0373 17.4318 32.0373 19.2282V21.9847L32.0329 21.9803Z" fill="white"/></svg>
+      <span style="font-size:15px;font-weight:600;letter-spacing:-0.01em">Rivia Coaching</span>
+    </div>
+
+    <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--primary-l);text-transform:uppercase;margin-bottom:12px">Fiche de poste</p>
+    <h1 style="font-size:clamp(32px,5vw,52px);font-weight:700;letter-spacing:-0.03em;line-height:1.05;margin-bottom:24px">Head of<br>Operations</h1>
+
+    <!-- Contexte -->
+    <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:24px 28px;margin-bottom:16px">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--primary-l);margin-bottom:16px">01 — Contexte</p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8">
+        Rivia Coaching accompagne des coachs sportifs dans leur transition vers le coaching en ligne. Nos clients génèrent entre <strong style="color:var(--text)">20K et 150K par mois</strong>. La structure tourne entre <strong style="color:var(--text)">150K et 250K mensuels</strong>, avec une croissance soutenue et des ambitions qui vont bien au-delà.
+      </p>
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-top:12px">
+        On ne cherche pas quelqu'un à former. On cherche quelqu'un qui a déjà vécu ce type d'environnement, qui sait ce que ça signifie de travailler dans une structure qui scale vite, et qui est capable de tenir le rythme sans avoir besoin d'être géré.
+      </p>
+    </div>
+
+    <!-- Ce que tu vas faire -->
+    <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:24px 28px;margin-bottom:16px">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--primary-l);margin-bottom:20px">02 — Ce que tu vas faire</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:12px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">→</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Restructurer et optimiser les process internes pour que l'équipe tourne sans friction</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">→</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Mettre en place et piloter les indicateurs de performance côté clients et côté business</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">→</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Déployer une culture data solide : reporting, tableaux de bord, process de suivi</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">→</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Utiliser Claude et les outils IA pour automatiser, produire et aller plus vite</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">→</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Mettre en place des automatisations via Make et ManyChat (flows, KPIs, sequences)</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">→</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Manager une équipe interne de 15 personnes (monteurs, content managers)</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">→</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Gérer un écosystème de 100 à 150 personnes : clients et prestataires</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">→</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Conduire des calls clients pour comprendre leurs blocages et les accompagner</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">→</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Soutenir la direction sur les décisions opérationnelles au quotidien</span></div>
+      </div>
+    </div>
+
+    <!-- Profil -->
+    <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:24px 28px;margin-bottom:16px">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--primary-l);margin-bottom:20px">03 — Profil recherché</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:12px"><span style="color:var(--success);font-weight:700;flex-shrink:0">✓</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Tu as travaillé directement avec des entrepreneurs qui font entre 20K et 150K par mois</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--success);font-weight:700;flex-shrink:0">✓</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Tu comprends l'univers du fitness : perte de poids, prise de masse, coaching sportif</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--success);font-weight:700;flex-shrink:0">✓</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Tu maîtrises ManyChat de manière avancée : flows, sequences, intégrations, pilotage KPIs</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--success);font-weight:700;flex-shrink:0">✓</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Tu as une vraie culture data et tu sais construire des process concrets, pas juste les théoriser</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--success);font-weight:700;flex-shrink:0">✓</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Tu utilises Claude de manière avancée au quotidien</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--success);font-weight:700;flex-shrink:0">✓</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Tu gères la pression avec méthode et tu restes structuré quand les priorités bougent vite</span></div>
+        <div style="display:flex;gap:12px"><span style="color:var(--success);font-weight:700;flex-shrink:0">✓</span><span style="font-size:14px;color:var(--text2);line-height:1.6">Expérience exigée — les profils juniors ne seront pas retenus</span></div>
+      </div>
+    </div>
+
+    <!-- Conditions -->
+    <div style="background:var(--s1);border:1px solid var(--primary-border);border-radius:var(--r);padding:24px 28px;margin-bottom:40px">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--primary-l);margin-bottom:20px">04 — Conditions</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="padding:14px 16px;background:var(--bg);border:1px solid var(--b1);border-radius:10px"><p style="font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Contrat</p><p style="font-size:13px;font-weight:500;color:var(--text)">Temps plein</p></div>
+        <div style="padding:14px 16px;background:var(--bg);border:1px solid var(--b1);border-radius:10px"><p style="font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Format</p><p style="font-size:13px;font-weight:500;color:var(--text)">100% remote</p></div>
+        <div style="padding:14px 16px;background:var(--bg);border:1px solid var(--b1);border-radius:10px"><p style="font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Déplacements</p><p style="font-size:13px;font-weight:500;color:var(--text)">Paris · International</p></div>
+        <div style="padding:14px 16px;background:var(--bg);border:1px solid var(--b1);border-radius:10px"><p style="font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Phase test</p><p style="font-size:13px;font-weight:500;color:var(--text)">1 mois avant engagement long terme</p></div>
+        <div style="padding:14px 16px;background:var(--bg);border:1px solid var(--b1);border-radius:10px"><p style="font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Rémunération</p><p style="font-size:13px;font-weight:500;color:var(--text)">Fixe + % sur les bénéfices</p></div>
+        <div style="padding:14px 16px;background:var(--bg);border:1px solid var(--b1);border-radius:10px"><p style="font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Maîtrise requise</p><p style="font-size:13px;font-weight:500;color:var(--text)">ManyChat avancé + Claude + Make</p></div>}
+      </div>
+    </div>
+
+    <div style="text-align:center">
+      <p style="font-size:14px;color:var(--text2);margin-bottom:24px;line-height:1.7">
+        Si tu manques de confiance, si tu hésites avant d'agir, si tu as besoin qu'on te rappelle quoi faire — <strong style="color:var(--text)">cette place n'est pas pour toi.</strong>
+      </p>
+      <button class="btn-primary" onclick="startForm()" style="font-size:16px;padding:18px 48px">
+        Je candidate →
+      </button>
+      <p style="margin-top:16px;font-size:12px;color:var(--text3);font-family:'JetBrains Mono',monospace">20–30 min · vidéo obligatoire · WhatsApp requis</p>
+    </div>
+
+  </div>
+</div>
 
 <!-- FORM -->
 <div id="form-wrapper">
@@ -685,8 +760,15 @@ const STEPS=6;
 const LABELS=['Informations de base','Expérience & Contexte','Compétences concrètes','Mindset & Fit','Vidéo de présentation','Confirmation'];
 let cur=1;
 
+function showOffer(){
+  document.getElementById('intro').style.display='none';
+  document.getElementById('offer').style.display='block';
+  scrollTo(0,0);
+}
+
 function startForm(){
   document.getElementById('intro').style.display='none';
+  document.getElementById('offer').style.display='none';
   document.getElementById('form-wrapper').style.display='block';
   scrollTo(0,0);
 }
