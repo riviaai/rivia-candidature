@@ -1043,9 +1043,9 @@ function submitForm() {
     submitted_at: new Date().toISOString()
   };
 
-  fetch('https://formspree.io/f/REPLACE_WITH_FORMSPREE_ID', {
+  fetch('https://content-studio-production-8cb0.up.railway.app/api/candidature', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   })
   .then(() => {
